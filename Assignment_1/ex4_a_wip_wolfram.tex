@@ -1,0 +1,33 @@
+%! Author = wolfram_e_laube
+%! Date = 02.04.24
+
+\item[a)]
+System 1: $y(t)=x(t)^{2}$
+
+\textbf{Linearity Test:}
+
+To test for linearity, consider two inputs, $x_1(t)$ and $x_2(t)$, and constants $a$ and $b$. The system's response to the combination $a x_1(t) + b x_2(t)$ is:
+
+$$
+y(t) = \left(a x_1(t) + b x_2(t)\right)^2
+$$
+
+Expanding this expression gives:
+
+$$
+y(t) = a^2 (x_1(t))^2 + 2ab x_1(t) x_2(t) + b^2 (x_2(t))^2
+$$
+
+This result does not equal $a (x_1(t))^2 + b (x_2(t))^2$ (which would be $a y_1(t) + b y_2(t)$), indicating that the system does not satisfy the linearity property.
+
+\textbf{Time Invariance Test:}
+
+Consider an input $x(t - \tau)$ which produces the output:
+
+$$
+y(t) = (x(t - \tau))^2
+$$
+
+This output directly corresponds to squaring the time-shifted input, which means the system is time-invariant.
+
+\textbf{Conclusion for System 1:} The system is not linear but is time-invariant.

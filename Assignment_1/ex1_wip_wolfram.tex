@@ -1,0 +1,83 @@
+%! Author = wolfram_e_laube
+%! Date = 02.04.24
+
+\textbf{Form Conversions}
+
+\begin{enumerate}
+\item[-]
+$c_2 = \frac{\sqrt{2}}{2} e^{-\frac{j 3 \pi}{4}}$ to rectangular form:
+\[
+\begin{aligned}
+& x = \frac{\sqrt{2}}{2} \cos({-\frac{3 \pi}{4}}) = \frac{\sqrt{2}}{2} \cdot -\frac{\sqrt{2}}{2} = -\frac{1}{2} \\
+& y = \frac{\sqrt{2}}{2} \sin({-\frac{3 \pi}{4}}) = \frac{\sqrt{2}}{2} \cdot -\frac{\sqrt{2}}{2} = -\frac{1}{2} \\
+& c_2 = -\frac{1}{2} - j \frac{1}{2}
+\end{aligned}
+\]
+\end{enumerate}
+
+\textbf{Calculations}
+
+\begin{enumerate}
+\item[-]
+$c_4 = c_1 + c_2$: To add, we use $c_2$ in rectangular form as calculated above:
+\[
+\begin{aligned}
+& c_4 = (-5 - \frac{1}{2}) + (3 - \frac{1}{2})j = -\frac{11}{2} + j \frac{5}{2}
+\end{aligned}
+\]
+\end{enumerate}
+
+\begin{enumerate}
+\item[-]
+$c_5 = c_1 \cdot c_2$: For multiplication, too:
+\[
+\begin{aligned}
+& c_5 = c_1 \cdot c_2 = (-5+j 3) \cdot (-\frac{1}{2} - j \frac{1}{2}) = \\
+& = (-5)\cdot (- \frac{1}{2})  + j(-5)\cdot(-\frac{1}{2}) + j3\cdot(-\frac{1}{2})+ j^23\cdot(-\frac{1}{2}) = \\
+& = \frac{5}{2}+\frac{3}{2} +j(\frac{5}{2}-\frac{3}{2}) = 4 + j
+\end{aligned}
+\]
+\end{enumerate}
+
+\begin{enumerate}
+\item[-]
+$c_6 = |c_3|^2$: Square each component of $c_3$ and sum up:
+\[
+\begin{aligned}
+& c_6 = \frac{1}{\sqrt{2}}^2 + \frac{1}{\sqrt{2}}^2 = 1
+\end{aligned}
+\]
+\end{enumerate}
+
+\begin{enumerate}
+\item[-]
+$c_7 = \arg(c_3)$: is in the first quadrant (both real and imaginary parts positive):
+\[
+\begin{aligned}
+& c_7 = \arg(c_3) = \arctan\left(\frac{1}{\sqrt{2}}/\frac{1}{\sqrt{2}}\right) = \arctan(1) = \pi/4
+\end{aligned}
+\]
+\end{enumerate}
+
+\begin{enumerate}
+\item[-]
+$c_8 = \frac{c_1}{c_2}$: Expand with conjugate complex of denominator:
+\[
+\begin{aligned}
+& c_8 = \frac{c_1\cdot c_2^*}{c_2 \cdot c_2^*} = \\
+& = \frac{1}{|c_2^*|^2} \cdot (c_1 \cdot c_2^*) = \\
+& = 2 \cdot ((-5+j 3)) \cdot (-\frac{1}{2} + j \frac{1}{2})
+\end{aligned}
+\]
+\end{enumerate}
+
+\begin{enumerate}
+\item[-]
+$c_9 = c_1 * c_1^*$: Multiply directly or use $c_1 \cdot c_1^* = |c_1|^2$:
+\[
+\begin{aligned}
+& c_1^* = -5 - 3j \\
+& c_9 = (-5 + 3j) \cdot (-5 - 3j) = 25 + j15 -j15 -j^29 = 34
+\end{aligned}
+\]
+\end{enumerate}

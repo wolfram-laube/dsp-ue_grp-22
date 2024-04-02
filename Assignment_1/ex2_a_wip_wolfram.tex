@@ -1,0 +1,28 @@
+%! Author = wolfram_e_laube
+%! Date = 02.04.24
+
+\item [a)]
+Given the cosine wave expressed as
+$$
+x(t) = \hat{X} \cos(2\pi f_0 t),
+$$
+we aim to prove its Fourier transform pair. Using Euler's formula, $\cos(\theta) = \frac{e^{j\theta} + e^{-j\theta}}{2}$, we can express the cosine function as a sum of complex exponentials:
+$$
+x(t) = \hat{X} \left( \frac{e^{j2\pi f_0 t} + e^{-j2\pi f_0 t}}{2} \right) = \frac{\hat{X}}{2} e^{j2\pi f_0 t} + \frac{\hat{X}}{2} e^{-j2\pi f_0 t}.
+$$
+
+The Fourier transform of a complex exponential function is given by:
+$$
+e^{j2\pi f_0 t} \leftrightarrow \delta(f-f_0)
+$$
+and
+$$
+e^{-j2\pi f_0 t} \leftrightarrow \delta(f+f_0).
+$$
+
+Therefore, applying the Fourier transform to $x(t)$, we obtain:
+$$
+X(f) = \frac{\hat{X}}{2} \delta(f-f_0) + \frac{\hat{X}}{2} \delta(f+f_0),
+$$
+proving the given Fourier transform pair for the cosine wave.
+

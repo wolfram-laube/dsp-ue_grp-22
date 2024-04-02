@@ -1,0 +1,23 @@
+%! Author = wolfram_e_laube
+%! Date = 02.04.24
+
+\item [a)]
+Calculation of Phase Shifts $\phi_{i}$
+
+Given the time delay $\tau = 0.1 \, \text{s}$, the phase shift $\phi_{i}$ for each sine wave can be calculated
+using the formula for phase shift, which is given by $\phi = 2\pi f \tau$. Here, $f$ is the frequency of the sine wave,
+and $\tau$ is the time delay.
+
+For $f_{1} = 1 \, \text{Hz}$:
+$$
+\phi_{1} = 2\pi \cdot 1 \cdot 0.1 = 0.2\pi \, \text{radians}
+$$
+
+For $f_{2} = 3 \, \text{Hz}$:
+$$
+\phi_{2} = 2\pi \cdot 3 \cdot 0.1 = 0.6\pi \, \text{radians}
+$$
+
+This corresponds to the 'Shift Theorem' of the Fourier Transform, which states that a time delay in the time domain
+corresponds to a phase shift in the frequency domain. Specifically, a time delay $\tau$ results in a phase shift
+of $e^{-j2\pi f\tau}$ in the frequency domain, where $f$ is the frequency of the signal.

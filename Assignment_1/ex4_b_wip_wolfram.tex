@@ -1,0 +1,36 @@
+%! Author = wolfram_e_laube
+%! Date = 02.04.24
+
+\item[b)]
+System 2: $y(t)=x(t) \cdot \sin \left(\Omega_{0} t\right)$
+
+\textbf{Linearity Test:}
+
+For inputs $x_1(t)$ and $x_2(t)$, and constants $a$ and $b$, the system's response to the combination
+$a x_1(t) + b x_2(t)$ is:
+
+$$
+y(t) = (a x_1(t) + b x_2(t)) \cdot \sin(\Omega_0 t)
+$$
+
+This simplifies to:
+
+$$
+y(t) = a x_1(t) \sin(\Omega_0 t) + b x_2(t) \sin(\Omega_0 t)
+$$
+
+This result is equal to $a y_1(t) + b y_2(t)$, indicating that the system satisfies the linearity property.
+
+\textbf{Time Invariance Test:}
+
+Consider an input $x(t - \tau)$ which produces the output:
+
+$$
+y(t) = x(t - \tau) \cdot \sin(\Omega_0 t)
+$$
+
+This output is not equivalent to $y(t - \tau) = x(t - \tau) \cdot \sin(\Omega_0 (t - \tau))$,
+indicating that the system does not satisfy the time invariance property because the sine function's phase
+is affected by the time shift.
+
+\textbf{Conclusion for System 2:} The system is linear but not time-invariant.

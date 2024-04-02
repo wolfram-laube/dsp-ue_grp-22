@@ -122,64 +122,117 @@ Maximiliane Musterfrau, \textless Matrikelnummer \textgreater\\
 %=======================================================================================
 
 
+\begin{aufgabe}{Complex Numbers (20\%)}
+These complex numbers are given:
 
-\begin{aufgabe}{}
-Eventuell eine allgemeine Erklärung zu dieser Aufgabe (falls notwendig)
-\begin{enumerate}
-\item [a)] 
-Anmerkung: Dies sei eine analytische Aufgabe. \\ \\
-Hier soll gezeigt werden, dass das zeitdiskrete System 
-\[
-y[n] = x[n] + u[n-3] x[n-1].
-\]
-linear ist. Dazu wurden folgende Berechnungen durchgeführt:\\
-%
-\begin{align*}
-y_a[n] &= f\left(\underbrace{\alpha x_1[n] + \beta x_2[n]}_{\text{wird in Gleichung für x eingesetzt}}\right)\\ \\
-       &= \alpha\,x_1[n] + \beta\,x_2[n] + u[n-3] (\alpha\,x_1[n-1] + \beta\,x_2[n-1])\\ \\
-       &= \alpha\,x_1[n] + \beta\,x_2[n] + u[n-3] \alpha\,x_1[n-1] + u[n-3]  \beta\,x_2[n-1] \\ \\ 
-y_b[n] &= \alpha\,f(x_1[n]) + \beta f(x_2[n])\\ \\
-       &= \alpha (x_1[n] + u[n-3] x_1[n-1]) + \beta (x_2[n] + u[n-3] x_2[n-1])     \\ \\
-       &= \alpha x_1[n] + \alpha u[n-3] x_1[n-1] + \beta x_2[n] + \beta u[n-3] x_2[n-1] \\ \\
-       y_a[n] &= y_b[n] \rightarrow \text{linear} 
-\end{align*}
-%
-\item [b)]
-Anmerkung: In dieser Aufgabe sei eine Funktion zu implementieren. \\ \\
-Die Lösung dieses Beispiels finden Sie in \texttt{xxx.m}. Hier können auch eventuelle Probleme geschildert werden (falls etwas nicht ganz funktioniert). Gerne können hier auch Ergebnisse präsentiert werden, welche zeigen, dass die Implementierung korrekt ist (z.B. Diagramme, ...).
+$$
+\begin{aligned}
+& c_{1}=-5+j 3 \\
+& c_{2}=\frac{\sqrt{2}}{2} e^{-\frac{j 3 \pi}{4}} \\
+& c_{3}=\frac{1}{\sqrt{2}}+\frac{j 1}{\sqrt{2}}
+\end{aligned}
+$$
 
-\item [c)] 
-Anmerkung: In dieser Aufgabe seien diverse Plots zu veranschaulichen. \\ \\
-Figure~\ref{fig:Testpicture} zeigt ... \\
-Diskutieren Sie hier unbedingt, was das Bild zeigt bzw. ob es den Erwartungen entspricht oder nicht. Achten Sie auf eine sinnvolle Darstellung! Wenn in einem Plot nichts erkennbar ist, können auch keine Punkte vergeben werden. Vergessen Sie außerdem nie auf eine korrekte Achsenbeschriftung! 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=18cm]{Testpicture.eps}
-	\vspace{-0.3cm}
-	\caption{Das ist ein Testbild im eps Format.}
-	\label{fig:Testpicture}
-	\vspace{-0.1cm}
-\end{figure}
+Calculate the following numbers and show the calculations/derivations in the report.
 
-\end{enumerate}
+$$
+\begin{aligned}
+& c_{4}=c_{1}+c_{2} \\
+& c_{5}=c_{1} \cdot c_{2} \\
+& c_{6}=\left|c_{3}\right|^{2} \\
+& c_{7}=\arg \left(c_{3}\right) \\
+& c_{8}=\frac{c_{1}}{c_{2}} \\
+& c_{9}=c_{1} \cdot c_{1}^{*}
+\end{aligned}
+$$
+
+Subsequently check your results with Matlab. Useful functions in this context are abs and angle.
+You do not need to add those checks to your report, or show the corresponding code.
+
+\hrule
+
+\input{ex1_wip_wolfram.tex}
+
 \end{aufgabe}
 
-\begin{aufgabe}{}
-Erklärung der Aufgabe
+\begin{aufgabe}{Fourier Transform (25\%)}
+The lecture notes show the following Fourier transform pair for the cosine wave (DSP\_2.pdf, page 37):
+
+$$
+x(t)=\hat{X} \cos \left(2 \pi f_{0} t\right) \leftrightarrow X(f)=\frac{\hat{X}}{2} \delta\left(f-f_{0}\right)+\frac{\hat{X}}{2} \delta\left(f+f_{0}\right)
+$$
+
+Mathematically proof this relation. To do so, use Eulers formula to express the cosine in the
+time domain as a sum of complex exponentials and the Fourier transform of a complex exponential function
+from DSP\_2.pdf, page 38.
+
+Add a diagram of $X(f)$ in the report (draw the real and the imaginary part of $X(f)$ in the same diagram).
+
+\hrule
+
 \begin{enumerate}
-\item [a)] 
-Teilaufgabe a)
-
-\item [b)]
-Teilaufgabe b)
-
-
-\item [c)] 
-Teilaufgabe c)
-
+\input{ex2_a_wip_wolfram.tex}
+\input{ex2_b_wip_wolfram.tex}
 \end{enumerate}
+
 \end{aufgabe}
 
+\begin{aufgabe}{Time Shift and Phase (20\%)}
+Given are two sines according to the following formula with $f_{1}=1 \mathrm{~Hz}$ and $f_{2}=3 \mathrm{~Hz}$.
+
+$$
+x_{i}(t)=\sin \left(2 \pi f_{i} t\right), \text { with } i \in\{1,2\}
+$$
+
+All two sines are time delayed by $\tau=0.1 \mathrm{~s}$ to yield
+
+$$
+y_{i}(t)=\sin \left(2 \pi f_{i}(t-0.1)\right) \text {. }
+$$
+
+This corresponds to a phase shift. Thus, the delayed sines may also be written as
+
+$$
+y_{i}(t)=\sin \left(2 \pi f_{i} t+\phi_{i}\right) .
+$$
+
+\begin{enumerate}
+\item[a)] Calculate the phase shifts $\phi_{i}$ for each sine, and verify that this corresponds to the 'Shift Theorem' of the
+Fourier Transform (DSP\_2.pdf, page 41).
+
+\item[b)] For both sines in separated plots: Plot the original signal, the time delayed signal and the phase shifted signal.
+Since the latter two are identical, show this by plotting the first with a solid line and the overlaid one in a
+different colour with a dashed line. Plot each signal from 0 to $1 \mathrm{~s}$.
+In Matlab use the following time-vector: $\mathrm{t}=0: 0.001: 1$.
+\end{enumerate}
+
+\hrule
+
+\begin{enumerate}
+\input{ex3_a_wip_wolfram.tex}
+\input{ex3_b_wip_wolfram.tex}
+\end{enumerate}
+
+\end{aufgabe}
+
+\begin{aufgabe}{Linearity and Time Invariance (35\%)}
+Examine the following systems (input $x(t)$ and output $y(t)$ ) for linearity and time invariance.
+
+Clearly show the mathematical derivations and state if the systems are linear and/or time-invariant.
+
+\begin{enumerate}
+\item[a)] $y(t)=(x(t))^{2}$
+\item[b)] $y(t)=x(t) \cdot \sin \left(\Omega_{0} t\right)$
+\end{enumerate}
+
+\hrule
+
+\begin{enumerate}
+\input{ex4_a_wip_wolfram.tex}
+\input{ex4_b_wip_wolfram.tex}
+\end{enumerate}
+
+\end{aufgabe}
 
 
 \end{document}
