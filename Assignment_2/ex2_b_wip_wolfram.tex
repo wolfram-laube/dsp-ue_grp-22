@@ -1,0 +1,34 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(b)]
+To manually calculate the output signal $y[n]$, we need to perform the convolution of $x[n]$ and $h[n]$.
+This can be expressed as:
+$$
+y[n] = (x * h)[n] = \sum_{k=-\infty}^\infty x[k] \cdot h[n-k]
+$$
+However, since $x$ and $h$ are both finite sequences, the summation is only over the overlapping indices:
+$$
+y[n] = \sum_{k=\max(0, n+1-M)}^{\min(n, N-1)} x[k] \cdot h[n-k]
+$$
+
+We'll compute this manually:
+
+\begin{enumerate}
+\item[1.] $y[0] = x[0]h[0]$
+\item[2.] $y[1] = x[0]h[1] + x[1]h[0]$
+\item[3.] $y[2] = x[0]h[2] + x[1]h[1] + x[2]h[0]$
+\item[4.] $y[3] = x[0]h[3] + x[1]h[2] + x[2]h[1] + x[3]h[0]$
+\item[5.] $y[4] = x[1]h[3] + x[2]h[2] + x[3]h[1] + x[4]h[0]$
+\item[6.] $y[5] = x[2]h[3] + x[3]h[2] + x[4]h[1]$
+\item[7.] $y[6] = x[3]h[3] + x[4]h[2]$
+\item[8.] $y[7] = x[4]h[3]$
+\end{enumerate}
+
+The output signal $y[n]$ resulting from the convolution of $x[n]$ and $h[n]$ is given by:
+$$
+y[n] = (6, 7, 13, 5, 9, 5, 4, 1)
+$$
+
+This calculation corresponds to the values derived from manually applying the convolution sum for each output sample.
+Each element in $y[n]$ is computed based on the overlapping products of $x[n]$ and $h[n-k]$ for each shift $k$.

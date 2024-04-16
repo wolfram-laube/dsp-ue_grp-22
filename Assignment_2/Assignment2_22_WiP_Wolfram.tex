@@ -105,7 +105,7 @@
 \begin{minipage}[b][4cm]{1.0\textwidth}  
 \begin{center}
 \begin{bf} 
-\begin{large} Digital Signal Processing SS 2024 -- 1.~Assignment\end{large} \\
+\begin{large} Digital Signal Processing SS 2024 -- 2.~Assignment\end{large} \\
 \vspace{0.3cm}
 \begin{Large} Analogue Signals and Systems  \end{Large} \\
 \vspace{0.3cm}
@@ -124,7 +124,11 @@ Wolfram Laube, K08900915\\
 
 \begin{aufgabe}{Discrete Time Signals (30\%)}
 
-The following discrete time signals should be plotted in Matlab as indicated in Figure 1.
+\begin{enumerate}
+
+\item[(a)]
+The following discrete time signals should be plotted in Matlab as indicated in figure \ref{fig:ex1_required_plot_layout}.
+The time axis should be labeled with the correct time values and the signals should be plotted using a solid line.
 \[
 \begin{array}{ll}
 x_{1}[n] = -4 \delta[n+3] + 4 \delta[n] - \delta[n-3] + 2 \delta[n-7] & \text{for } -5 \leq n \leq 10 \\
@@ -133,37 +137,40 @@ x_{3}[n] = 3 \sin \left(2 \pi \frac{3.5}{64} n\right) & \text{for } 0 \leq n \le
 x_{4}[n] = -\cos \left(\frac{9}{64} n\right) & \text{for } 0 \leq n \leq 256
 \end{array}
 \]
-To indicate the discrete time nature of the signals, the \texttt{stem} command should be used, unless the signal length becomes too long, in which case the \texttt{plot} command should be used instead. Choose the ideal way to plot the signals.
-Extend the Matlab script \texttt{dsp\_A2\_1.m}. Useful commands are \texttt{figure}, \texttt{stem}, \texttt{plot}, \texttt{subplot}, \texttt{xlabel}, \texttt{ylabel}, \texttt{title}, \texttt{legend}, \texttt{hold on}, \texttt{grid on}, \texttt{pi}.
+To indicate the discrete time nature of the signals, the \texttt{stem} command should be used, unless the signal length becomes too long, in which case the \texttt{plot} command should be used instead.
+Choose the ideal way to plot the signals.
+Extend the Matlab script \texttt{dsp\_A2\_1.m}.
+Useful commands are \texttt{figure}, \texttt{stem}, \texttt{plot}, \texttt{subplot}, \texttt{xlabel}, \texttt{ylabel}, \texttt{title}, \texttt{legend}, \texttt{hold on}, \texttt{grid on}, \texttt{pi}.
 You can use the provided function \texttt{impseq}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{fig/ex2_fourier_transformed}
+\includegraphics[width=\textwidth]{fig/ex1_required_plot_layout}
 \caption{Required arrangement of plots}
+\label{fig:ex1_required_plot_layout}
 \end{figure}
 
-\subsection*{(b) Normalized Angular Frequency $\Omega$}
+\item[(b)]
 What is the normalized angular frequency $\Omega$ for $x_{3}[n]$ and $x_{4}[n]$?
 
-\subsection*{(c) Periodicity of Signals}
+\item[(c)]
 Are the signals $x_{3}[n]$ and $x_{4}[n]$ periodic? If yes, what is their fundamental period?
 
-\subsection*{(d) Matlab Function \texttt{custom\_power}}
+\item[(d)]
 Write the Matlab function \texttt{custom\_power} which calculates the mean power of a discrete time periodic signal according to
 \[ P = \frac{1}{N} \sum_{n=0}^{N-1} |x[n]|^2 \]
 Pass exactly one signal period to this function to calculate the powers of all periodic signals in (a).
 
-\subsection*{(e) Function \texttt{energy} and Signal Energies}
+\item[(e)]
 Now assume that all signals in (a) are zero outside the plot range (e.g., $x_{2}[11] = 0$).
 
 Write a function \texttt{energy} which calculates the signal energy according to
 \[ W = \sum_{n=-\infty}^\infty |x[n]|^2 \]
 Determine the energies for all these time-limited signals $x_{1}[n]$ to $x_{4}[n]$.
 
-\subsection*{(f) Table of Signal Powers and Energies}
+\item[(f)]
 Collect all the signal powers of (d) and signal energies of (e) in a single table in your protocol.
-
+\end{enumerate}
 
 \hrule
 
@@ -171,59 +178,58 @@ Collect all the signal powers of (d) and signal energies of (e) in a single tabl
 
 \end{aufgabe}
 
-\begin{aufgabe}{Fourier Transform (25\%)}
+\begin{aufgabe}{Convolution-1 (20\%)}
 
 The signal $x[n]=(3,-1,2,0,1)$ at sample times $n=(0,1,2,3,4)$ is the input to an LTI system with impulse response $h[n]=(2,3,4,1)$ at sample times $n=(0,1,2,3)$.
 
-\subsection{(a) Output Signal Length}
+\begin{enumerate}
+\item[(a)]
 How long is the output signal $y[n]$?
-
-\subsection{(b) Manual Calculation of $y[n]$}
+\item[(b)]
 Manually calculate the output signal $y[n]$.
-
+\end{enumerate}
 \hrule
 
 \begin{enumerate}
-%\input{ex2_a_wip_wolfram.tex}
-%\input{ex2_b_wip_wolfram.tex}
+\input{ex2_a_wip_wolfram}
+\input{ex2_b_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}
 
-\begin{aufgabe}{Time Shift and Phase (20\%)}
-Given are two sines according to the following formula with $f_{1}=1 \mathrm{~Hz}$ and $f_{2}=3 \mathrm{~Hz}$.
+\begin{aufgabe}{Convolution-2 (25\%)}
 
-$$
-x_{i}(t)=\sin \left(2 \pi f_{i} t\right), \text { with } i \in\{1,2\}
-$$
+Consider a Linear Time-Invariant (LTI) system with an impulse response
+given by $h[n] = (0.25, 0.5, 0.25)$ at sample indices $n = (0, 1, 2)$.
 
-All two sines are time delayed by $\tau=0.1 \mathrm{~s}$ to yield
-
-$$
-y_{i}(t)=\sin \left(2 \pi f_{i}(t-0.1)\right) \text {. }
-$$
-
-This corresponds to a phase shift. Thus, the delayed sines may also be written as
-
-$$
-y_{i}(t)=\sin \left(2 \pi f_{i} t+\phi_{i}\right) .
-$$
+The input signal is defined as $x[n] = \cos \left(\frac{2 \pi}{20} n\right)$ for $0 \leq n < 50$.
 
 \begin{enumerate}
-\item[a)] Calculate the phase shifts $\phi_{i}$ for each sine, and verify that this corresponds to the 'Shift Theorem' of the
-Fourier Transform (DSP\_2.pdf, page 41).
+\item[(a)]
+What is the length $L_y$ of the output signal $y[n]$?
 
-\item[b)] For both sines in separated plots: Plot the original signal, the time delayed signal and the phase shifted signal.
-Since the latter two are identical, show this by plotting the first with a solid line and the overlaid one in a
-different colour with a dashed line. Plot each signal from 0 to $1 \mathrm{~s}$.
-In Matlab use the following time-vector: $\mathrm{t}=0: 0.001: 1$.
+\item[(b)]
+Implement the convolution operation $y[n] = \sum_{i=0}^{L_{h}-1} h[i] x[n-i]$ in Matlab using two nested for-loops.
+The outer for-loop should increment the output index $n$, and the inner for-loop should increment the memory index $i$.
+Calculate all $L_y$ output samples of $y[n]$.
+
+\item[(c)]
+Plot the signal $y[n]$.
+
+\item[(d)]
+Verify the correct implementation of the convolution using the Matlab function \texttt{conv}.
+Plot both signals on top of each other, with the directly calculated signal in a solid line style
+\item and the signal obtained via \texttt{conv} in a dashed style.
+Provide a legend for your plot.
+
 \end{enumerate}
-
 \hrule
 
 \begin{enumerate}
-%\input{ex3_a_wip_wolfram.tex}
-%\input{ex3_b_wip_wolfram.tex}
+\input{ex3_a_wip_wolfram.tex}
+\input{ex3_b_wip_wolfram.tex}
+\input{ex3_c_wip_wolfram.tex}
+\input{ex3_d_wip_wolfram.tex}
 \end{enumerate}
 
 \end{aufgabe}
