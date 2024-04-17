@@ -1,0 +1,12 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(f)]
+The signal powers and energies are calculated for all signals and presented in a single table for analysis:
+
+\begin{verbatim}
+powers = [custom_power(x1, len(x1)), custom_power(x2, len(x2)), ...
+          custom_power(x3, len(n2)), custom_power(x4, len(n2))]
+energies = [energy(x1), energy(x2), energy(x3), energy(x4)]
+table = np.array([powers, energies])
+\end{verbatim}

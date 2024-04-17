@@ -1,0 +1,10 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(d)]
+This function calculates the mean power of a discrete time periodic signal:
+
+\begin{verbatim}
+def custom_power(x, N):
+    return np.sum(np.abs(x) ** 2) / N
+\end{verbatim}
