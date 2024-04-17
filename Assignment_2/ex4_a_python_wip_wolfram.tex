@@ -12,17 +12,21 @@ def dtft(x, n, w):
     """
     Compute the Discrete-time Fourier Transform (DTFT) of a finite sequence.
 
-    :param x: finite duration sequence over n
-    :param n: sample position vector
-    :param w: frequency location vector
-    :return: DTFT values computed at w frequencies
+    :param x: Finite duration sequence over n (numpy array)
+    :param n: Sample position vector (numpy array)
+    :param w: Frequency location vector (numpy array)
+    :return: DTFT values computed at w frequencies (numpy array)
     """
+    # Convert all inputs to numpy arrays to ensure proper calculations
     x = np.array(x)
     n = np.array(n)
     w = np.array(w)
 
-    # Using matrix multiplication for vectorized computation
-    X = np.exp(-1j * np.outer(n, w)) @ x
+    # Create a 2D meshgrid for the frequencies and samples for broadcasting
+    N, W = np.meshgrid(n, w)
+
+    # Compute the DTFT using broadcasting and vectorized operations
+    X = np.exp(-1j * N * W) @ x
     return X
 \end{verbatim}
 

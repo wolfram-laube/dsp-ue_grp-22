@@ -15,10 +15,9 @@ X1 = dtft(x, n, w1);
 % Calculate the DTFT for finer frequency resolution
 X2 = dtft(x, n, w2);
 
-% Plot the magnitude response for both resolutions for comparison
+% Plot the magnitude and phase response for coarser frequency resolution
 figure;
 
-% Magnitude response for coarser frequency resolution
 subplot(2,1,1);
 plot(w1, abs(X1));
 title('Magnitude Response with Coarser $\Omega$ Resolution');
@@ -26,12 +25,28 @@ xlabel('$\Omega$');
 ylabel('|X|');
 grid on;
 
-% Magnitude response for finer frequency resolution
 subplot(2,1,2);
+plot(w1, angle(X1));
+title('Phase Response with Coarser $\Omega$ Resolution');
+xlabel('$\Omega$');
+ylabel('Phase (radians)');
+grid on;
+
+% Plot the magnitude and phase response for finer frequency resolution
+figure;
+
+subplot(2,1,1);
 plot(w2, abs(X2));
 title('Magnitude Response with Finer $\Omega$ Resolution');
 xlabel('$\Omega$');
 ylabel('|X|');
+grid on;
+
+subplot(2,1,2);
+plot(w2, angle(X2));
+title('Phase Response with Finer $\Omega$ Resolution');
+xlabel('$\Omega$');
+ylabel('Phase (radians)');
 grid on;
 \end{verbatim}
 
