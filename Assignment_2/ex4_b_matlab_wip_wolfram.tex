@@ -1,0 +1,40 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(b)]
+The magnitude and phase response of $X\left(e^{j \Omega}\right)$ are plotted using the following MATLAB code:
+
+\begin{verbatim}
+% Define the sequence parameters
+n = -10:10; % Sequence is nonzero between n = -10 and n = 10
+x = (0.8).^abs(n) .* (heaviside(n + 10) - heaviside(n - 11));
+
+% Define the frequency vector
+w = -pi:0.01:pi; % Frequency range
+
+% Calculate the DTFT using the previously defined dtft function
+X = dtft(x, n, w);
+
+% Plot the magnitude and phase response
+figure;
+
+% Magnitude response subplot
+subplot(2,1,1);
+plot(w, abs(X));
+title('Magnitude Response of $X(e^{j\Omega})$');
+xlabel('$\Omega$');
+ylabel('|X|');
+grid on;
+
+% Phase response subplot
+subplot(2,1,2);
+plot(w, angle(X));
+title('Phase Response of $X(e^{j\Omega})$');
+xlabel('$\Omega$');
+ylabel('Phase (radians)');
+grid on;
+\end{verbatim}
+
+Observations for the magnitude response and phase response are as follows: the magnitude response reveals
+the amplitude spectrum of the signal, while the phase response may show piecewise linearity.
+The scale of the y-axis in the phase plot should be adjusted to properly observe the phase variations.

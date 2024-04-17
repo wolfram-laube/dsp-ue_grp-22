@@ -1,0 +1,28 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(a)]
+The MATLAB function to calculate the DTFT of a finite sequence is implemented without the use of for-loops.
+The function uses vectorized operations to compute the DTFT over a vector of frequencies.
+Here is the function code:
+
+\begin{verbatim}
+function X = dtft(x, n, w)
+    % DTFT computes Discrete-time Fourier transform
+    % @param x: finite duration sequence over n
+    % @param n: sample position vector
+    % @param w: frequency location vector
+    % @return X: DTFT values computed at w frequencies
+
+    % Ensure column vectors
+    x = x(:);
+    n = n(:);
+    w = w(:)';
+
+    % Using vectorized operations
+    X = exp(-1j * n * w) * x;
+end
+\end{verbatim}
+
+This function takes a finite sequence $x[n]$, a sample position vector $n$, and a frequency location vector $w$,
+and returns the DTFT values computed at the specified frequencies.

@@ -1,0 +1,41 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(c)]
+To observe the effects of varying the parameter $\Omega$ in the spectrum, the MATLAB code can alter the frequency resolution. Here is an example of how the MATLAB code can be used to compare different frequency resolutions:
+
+\begin{verbatim}
+% Different ranges of frequency vector w for observation
+w1 = -pi:0.1:pi; % Coarser frequency resolution
+w2 = -pi:0.01:pi; % Finer frequency resolution
+
+% Calculate the DTFT for coarser frequency resolution
+X1 = dtft(x, n, w1);
+
+% Calculate the DTFT for finer frequency resolution
+X2 = dtft(x, n, w2);
+
+% Plot the magnitude response for both resolutions for comparison
+figure;
+
+% Magnitude response for coarser frequency resolution
+subplot(2,1,1);
+plot(w1, abs(X1));
+title('Magnitude Response with Coarser $\Omega$ Resolution');
+xlabel('$\Omega$');
+ylabel('|X|');
+grid on;
+
+% Magnitude response for finer frequency resolution
+subplot(2,1,2);
+plot(w2, abs(X2));
+title('Magnitude Response with Finer $\Omega$ Resolution');
+xlabel('$\Omega$');
+ylabel('|X|');
+grid on;
+\end{verbatim}
+
+When varying $\Omega$, different frequency resolutions will affect the DTFT computation.
+A coarser frequency resolution might overlook some subtle details in the spectrum,
+whereas a finer resolution could reveal a more detailed structure in the signal's frequency domain representation.
+These observations can be made by comparing the DTFT results obtained using different resolutions of the frequency vector $w$.

@@ -1,0 +1,30 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(b)]
+The Python code to perform the convolution using two nested for-loops is as follows:
+
+\begin{verbatim}
+import numpy as np
+
+# Define the impulse response and input signal
+h = np.array([0.25, 0.5, 0.25])
+x = np.cos(2 * np.pi / 20 * np.arange(50))  # Generate the input signal
+
+# Initialize the output signal array
+Ly = len(x) + len(h) - 1
+y = np.zeros(Ly)
+
+# Perform convolution using nested for-loops
+for n in range(Ly):
+    for i in range(len(h)):
+        if (n - i >= 0) and (n - i < len(x)):
+            y[n] += h[i] * x[n - i]
+
+# Print the output signal
+print("Output Signal y[n]:", y)
+\end{verbatim}
+
+This Python script manually computes the convolution of the input signal $x[n]$ with the impulse response $h[n]$.
+The outer loop increments the output index $n$, while the inner loop increments the memory index $i$.
+This method calculates all $L_y$ output samples of $y[n]$ and prints the result.

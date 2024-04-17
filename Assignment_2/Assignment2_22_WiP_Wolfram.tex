@@ -219,36 +219,53 @@ Plot the signal $y[n]$.
 \item[(d)]
 Verify the correct implementation of the convolution using the Matlab function \texttt{conv}.
 Plot both signals on top of each other, with the directly calculated signal in a solid line style
-\item and the signal obtained via \texttt{conv} in a dashed style.
+and the signal obtained via \texttt{conv} in a dashed style.
 Provide a legend for your plot.
 
 \end{enumerate}
 \hrule
 
 \begin{enumerate}
-\input{ex3_a_wip_wolfram.tex}
-\input{ex3_b_wip_wolfram.tex}
-\input{ex3_c_wip_wolfram.tex}
-\input{ex3_d_wip_wolfram.tex}
+\input{ex3_a_wip_wolfram}
+\input{ex3_b_python_wip_wolfram}
+\input{ex3_c_python_wip_wolfram}
+\input{ex3_d_python_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}
 
-\begin{aufgabe}{Linearity and Time Invariance (35\%)}
-Examine the following systems (input $x(t)$ and output $y(t)$ ) for linearity and time invariance.
-
-Clearly show the mathematical derivations and state if the systems are linear and/or time-invariant.
+\begin{aufgabe}{Discrete Time Fourier Transform (25\%)}
+The time discrete sequence $x[n]=(0.8)^{|n|}(u[n+10]-u[n-11])$ should be transformed to the frequency domain
+by using the discrete time Fourier transform (DTFT).
+As $x[n]$ has finite support (that means it is a sequence of finite length), $X\left(e^{j \Omega}\right)$
+can be determined numerically via Matlab (or alternatively Octave, Python).
 
 \begin{enumerate}
-\item[a)] $y(t)=(x(t))^{2}$
-\item[b)] $y(t)=x(t) \cdot \sin \left(\Omega_{0} t\right)$
+\item[(a)]
+Create a Matlab function, that is able to calculate the DTFT of a finite sequence.
+The function should provide the following interface:
+
+% Interface is described in the attached screenshot.
+
+Try to avoid for loops!
+You are still allowed to use for loops, however there will be a small deduction in points for the case you need to use for loops.
+
+\item[(b)]
+Plot magnitude and phase response of $X\left(e^{j \Omega}\right)$ for the interval $-\pi \leq \Omega \leq \pi$
+within single subplots.
+What do you observe for the phase response (hint: you should have a close look at the scaling of the $y$ axis)?
+
+\item[(c)]
+Vary the parameter $\Omega$.
+What do you observe in the spectrum?
 \end{enumerate}
 
 \hrule
 
 \begin{enumerate}
-%\input{ex4_a_wip_wolfram.tex}
-%\input{ex4_b_wip_wolfram.tex}
+\input{ex4_a_python_wip_wolfram}
+\input{ex4_b_python_wip_wolfram}
+\input{ex4_c_python_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}

@@ -1,0 +1,30 @@
+%! Author = wolfram_e_laube
+%! Date = 16.04.24
+
+\item[(a)]
+A Python function to calculate the DTFT of a finite sequence is provided below.
+The function employs NumPy's vectorized operations to avoid explicit for-loops.
+
+\begin{verbatim}
+import numpy as np
+
+def dtft(x, n, w):
+    """
+    Compute the Discrete-time Fourier Transform (DTFT) of a finite sequence.
+
+    :param x: finite duration sequence over n
+    :param n: sample position vector
+    :param w: frequency location vector
+    :return: DTFT values computed at w frequencies
+    """
+    x = np.array(x)
+    n = np.array(n)
+    w = np.array(w)
+
+    # Using matrix multiplication for vectorized computation
+    X = np.exp(-1j * np.outer(n, w)) @ x
+    return X
+\end{verbatim}
+
+This function calculates the DTFT using matrix multiplication, which is a vectorized operation
+that can replace explicit looping constructs.
