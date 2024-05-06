@@ -1,0 +1,257 @@
+\documentclass[12pt,a4paper,austrian]{article}
+\usepackage{graphicx}
+\usepackage[austrian, english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{listings}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb} % fuer Mengen \N, Q, C, R
+\graphicspath{{./fig/}}
+
+
+%% Satzspiegel
+\setlength{\hoffset}{-1in} \setlength{\textwidth}{18cm}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\marginparsep}{0.7em}
+\setlength{\marginparwidth}{0.5cm}
+
+\setlength{\voffset}{-1.9in}
+\setlength{\headheight}{12pt}
+\setlength{\topmargin}{2.6cm}
+   \addtolength{\topmargin}{-\headheight}
+\setlength{\headsep}{3.5cm}
+   \addtolength{\headsep}{-\topmargin}
+   \addtolength{\headsep}{-\headheight}
+\setlength{\textheight}{27cm}
+
+%% How should floats be treated?
+\setlength{\floatsep}{12 pt plus 0 pt minus 8 pt}
+\setlength{\textfloatsep}{12 pt plus 0pt minus 8 pt}
+\setlength{\intextsep}{12 pt plus 0pt minus 8 pt}
+
+\tolerance2000
+\emergencystretch20pt
+
+%% Text appearence
+% English text
+\newcommand{\eg}[1]%
+  {\selectlanguage{english}\textit{#1}\selectlanguage{austrian}}
+
+\newcommand{\filename}[1]
+  {\begin{small}\texttt{#1}\end{small}}
+
+\newcommand\IFT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle*{1.7}}\end{picture}}
+\newcommand\FT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle*{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle{1.7}}\end{picture}}
+
+% A box for multiple choice problems
+\newcommand{\choicebox}{\fbox{\rule{0pt}{0.5ex}\rule{0.5ex}{0pt}}}
+
+\newenvironment{wahrfalsch}%
+  {\bigskip\par\noindent\makebox[1cm][c]{richtig}\hspace{3mm}\makebox[1cm][c]{falsch}
+   \begin{list}%
+   {\makebox[1cm][c]{\choicebox}\hspace{3mm}\makebox[1cm][c]{\choicebox}}%
+   {\setlength{\labelwidth}{2.31 cm}\setlength{\labelsep}{3mm}
+    \setlength{\leftmargin}{2.61 cm}\setlength{\listparindent}{0pt}
+    \setlength{\itemindent}{0pt}}%
+  }
+  {\end{list}}
+
+\newcounter{theaufgabe}\setcounter{theaufgabe}{1}
+\newenvironment{aufgabe}[1]%
+  {\bigskip\par\noindent\begin{nopagebreak}
+   \textsf{\textbf{\arabic{theaufgabe}.\thinspace Aufgabe}}\quad
+      \textsf{\textit{#1}}\\*[1ex]%
+\stepcounter{theaufgabe}\hspace{2ex}\end{nopagebreak}}
+  {\par\pagebreak[2]}
+
+% Innerhalb der Aufgaben erfolgt die weitere Unterteilung mittels einer
+% enumerate Umgebung, die allerdings a), b),... zaehlen soll.
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+% A box to tick for everything which has to done
+\newcommand{\abgabe}{\marginpar{$\Box$}}
+% Margin paragraphs on the left side
+\reversemarginpar
+
+% Language for listings
+%\lstset{language=Vhdl,
+%  basicstyle=\small\tt,
+ % keywordstyle=\tt\bf,
+ % commentstyle=\sl}
+
+% No indention
+\setlength{\parindent}{0.0cm}
+% Don't number sections
+\setcounter{secnumdepth}{0}
+
+
+%% Beginning of the text
+
+\begin{document}
+\selectlanguage{austrian}
+\pagestyle{plain}
+
+
+%===  This is the header section ============================================================
+\thispagestyle{empty}
+\noindent
+\begin{minipage}[b][4cm]{1.0\textwidth}  
+\begin{center}
+\begin{bf} 
+\begin{large} Digital Signal Processing SS 2024 -- 3.~Assignment\end{large} \\
+\vspace{0.3cm}
+\begin{Large} Sampling and Reconstruction \end{Large} \\
+\vspace{0.3cm}
+\end{bf}
+\begin{large}
+Group 22\\
+Julian Feichtinger, K12015812\\
+Wolfram Laube, K08900915\\
+\end{large} 
+\end{center}
+\end{minipage}
+
+\noindent \rule[0.8em]{\textwidth}{0.12mm}\\[-0.5em]
+%=======================================================================================
+
+
+\begin{aufgabe}{Sampling $1(40 \%)$}
+
+The analogue signal
+
+\[
+x(t) = x_{1}(t) + x_{2}(t) = \sin \left(2 \pi f_{1} t\right) + \sin \left(2 \pi f_{2} t\right)
+\]
+
+with \(f_{1} = 4 \mathrm{kHz}\) and \(f_{2} = 6 \mathrm{kHz}\) is sampled with a sampling rate of \(f_{s} = 10 \mathrm{kHz}\) to yield the discrete time signal \(x[n]\).
+
+\begin{enumerate}[label=\alph*)]
+    \item Draw the spectrum of \(x(t)\).
+
+    \item Due to sampling frequency shifted versions of the analogue spectrum are generated.
+
+    Draw the spectra shifted by \(-f_{s}, 0\) and \(+f_{s}\) and then the spectrum for \(x[n]\) as a result of spectral addition in one diagram.
+    The diagram should show the spectra in the range from \(-f_{s}\) to \(+f_{s}\).
+
+    \emph{Hint: Draw real and imaginary parts of the spectrum rather than magnitude and phase to ease addition.}
+
+    \item In Matlab, plot the section 0 to \(2 \mathrm{~ms}\) of the signal \(x(t)\) with a sampling rate of \(100 \mathrm{kHz}\) to emulate an analogue signal.
+
+    Then also add the sampled signal \(x[n] = x\left(n T_{s}\right)\) to the same plot.
+    Show that \(x[n]\) corresponds to the spectrum derived in (b).
+\end{enumerate}
+
+
+\hrule
+\begin{enumerate}
+%\input{ex1_a_python_wip_wolfram}
+%\input{ex1_b_wip_wolfram}
+%\input{ex1_c_wip_wolfram}
+%\input{ex1_d_python_wip_wolfram}
+%\input{ex1_e_python_wip_wolfram}
+%\input{ex1_f_python_wip_wolfram}
+\end{enumerate}
+
+\end{aufgabe}
+
+\begin{aufgabe}{Convolution-1 (20\%)}
+
+The signal $x[n]=(3,-1,2,0,1)$ at sample times $n=(0,1,2,3,4)$ is the input to an LTI system with impulse response $h[n]=(2,3,4,1)$ at sample times $n=(0,1,2,3)$.
+
+\begin{enumerate}
+\item[(a)]
+How long is the output signal $y[n]$?
+\item[(b)]
+Manually calculate the output signal $y[n]$.
+\end{enumerate}
+\hrule
+
+\begin{enumerate}
+%\input{ex2_a_wip_wolfram}
+%\input{ex2_b_wip_wolfram}
+\end{enumerate}
+
+\end{aufgabe}
+
+\begin{aufgabe}{Convolution-2 (25\%)}
+
+Consider a Linear Time-Invariant (LTI) system with an impulse response
+given by $h[n] = (0.25, 0.5, 0.25)$ at sample indices $n = (0, 1, 2)$.
+
+The input signal is defined as $x[n] = \cos \left(\frac{2 \pi}{20} n\right)$ for $0 \leq n < 50$.
+
+\begin{enumerate}
+\item[(a)]
+What is the length $L_y$ of the output signal $y[n]$?
+
+\item[(b)]
+Implement the convolution operation $y[n] = \sum_{i=0}^{L_{h}-1} h[i] x[n-i]$ in Matlab using two nested for-loops.
+The outer for-loop should increment the output index $n$, and the inner for-loop should increment the memory index $i$.
+Calculate all $L_y$ output samples of $y[n]$.
+
+\item[(c)]
+Plot the signal $y[n]$.
+
+\item[(d)]
+Verify the correct implementation of the convolution using the Matlab function \texttt{conv}.
+Plot both signals on top of each other, with the directly calculated signal in a solid line style
+and the signal obtained via \texttt{conv} in a dashed style.
+Provide a legend for your plot.
+
+\end{enumerate}
+\hrule
+
+\begin{enumerate}
+%\input{ex3_a_wip_wolfram}
+%\input{ex3_b_python_wip_wolfram}
+%\input{ex3_c_python_wip_wolfram}
+%\input{ex3_d_python_wip_wolfram}
+\end{enumerate}
+
+\end{aufgabe}
+
+\begin{aufgabe}{Discrete Time Fourier Transform (25\%)}
+The time discrete sequence $x[n]=(0.8)^{|n|}(u[n+10]-u[n-11])$ should be transformed to the frequency domain
+by using the discrete time Fourier transform (DTFT).
+As $x[n]$ has finite support (that means it is a sequence of finite length), $X\left(e^{j \Omega}\right)$
+can be determined numerically via Matlab (or alternatively Octave, Python).
+
+\begin{enumerate}
+\item[(a)]
+Create a Matlab function, that is able to calculate the DTFT of a finite sequence.
+The function should provide the following interface:
+
+% Interface is described in the attached screenshot.
+
+Try to avoid for loops!
+You are still allowed to use for loops, however there will be a small deduction in points for the case you need to use for loops.
+
+\item[(b)]
+Plot magnitude and phase response of $X\left(e^{j \Omega}\right)$ for the interval $-\pi \leq \Omega \leq \pi$
+within single subplots.
+What do you observe for the phase response (hint: you should have a close look at the scaling of the $y$ axis)?
+
+\item[(c)]
+Vary the parameter $\Omega$.
+What do you observe in the spectrum?
+\end{enumerate}
+
+\hrule
+
+\begin{enumerate}
+%\input{ex4_a_python_wip_wolfram}
+%\input{ex4_b_python_wip_wolfram}
+%\input{ex4_c_python_wip_wolfram}
+\end{enumerate}
+
+\end{aufgabe}
+
+
+\end{document}
