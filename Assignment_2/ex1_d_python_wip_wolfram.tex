@@ -1,0 +1,35 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(d)]
+This function calculates the mean power of a discrete time periodic signal over a specified number of samples $N$,
+which is typically one period of the signal.
+The function is defined to take two arguments: the signal array and its period.
+
+\begin{verbatim}
+def custom_power(x, N):
+    """
+    Calculates the mean power of a discrete time periodic signal over N samples.
+    """
+    return np.sum(np.abs(x)**2) / N
+\end{verbatim}
+
+To calculate the mean power of a periodic signal \(x_3[n]\) and \(x_4[n]\),
+where the periods have been previously defined based on their frequencies,
+the function is called with the signal truncated to one period:
+
+\begin{verbatim}
+# Python example
+power_x3 = custom_power(x3_values[:18], 18)
+power_x4 = custom_power(x4_values[:7], 7)
+\end{verbatim}
+
+and yields:
+
+\begin{verbatim}
+Power x_3: 4.5657532755203984
+Power x_4: 0.4949681510722214
+\end{verbatim}
+
+This approach ensures that the power calculation reflects the actual energy content per cycle of the periodic signals,
+providing an accurate measure crucial for signal analysis tasks.

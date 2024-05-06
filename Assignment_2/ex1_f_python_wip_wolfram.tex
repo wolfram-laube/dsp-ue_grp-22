@@ -1,0 +1,33 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(f)]
+All signal powers and energies computed in the previous steps are collected into a single table for a comprehensive overview.
+This table facilitates comparison and further analysis:
+
+\begin{verbatim}
+import pandas as pd
+
+# Create a dictionary with the data
+data = {
+    'Signal': ['x1', 'x2', 'x3', 'x4'],
+    'Energy': [energy_x1, energy_x2, energy_x3, energy_x4],
+    'Power': [None, None, power_x3, power_x4]  # None for non-periodic signals
+}
+
+# Create and display a DataFrame
+df = pd.DataFrame(data)
+print(df)
+\end{verbatim}
+
+and reads:
+
+\begin{verbatim}
+  Signal       Energy     Power
+0     x1    37.000000       NaN
+1     x2    48.039373       NaN
+2     x3  1152.000000  4.565753
+3     x4   129.000000  0.494968
+\end{verbatim}
+
+This structure enables easy visualization and access to the energy and power data associated with each signal, making it straightforward to draw comparisons and perform subsequent analyses.

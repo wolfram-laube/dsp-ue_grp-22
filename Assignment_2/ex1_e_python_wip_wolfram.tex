@@ -1,0 +1,19 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(e)]
+This function calculates the total energy of a signal:
+
+\begin{verbatim}
+def energy(x):
+    """Calculates the total energy of the signal."""
+    return np.sum(np.abs(x)**2)
+\end{verbatim}
+
+and yields:
+\begin{verbatim}
+Energy x_1: 37
+Energy x_2: 48.03937311125317
+Energy x_3: 1152.0
+Energy x_4: 128.99999999999994
+\end{verbatim}

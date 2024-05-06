@@ -1,0 +1,19 @@
+%! Author = wolfram_e_laube
+%! Date = 17.04.24
+
+\item[(f)]
+All signal powers and energies computed in the previous steps are collected into a single table for a comprehensive overview.
+This table facilitates comparison and further analysis.
+
+\begin{verbatim}
+% Define arrays for signal names, energies, and powers
+SignalNames = {'x1'; 'x2'; 'x3'; 'x4'};
+Energies = [energy_x1; energy_x2; energy_x3; energy_x4];
+Powers = [NaN; NaN; power_x3; power_x4];  % NaN for non-periodic signals
+
+% Create and display a table
+T = table(SignalNames, Energies, Powers, 'VariableNames', {'Signal', 'Energy', 'Power'})
+\end{verbatim}
+
+This structure enables easy visualization and access to the energy and power data associated with each signal,
+making it straightforward to draw comparisons and perform subsequent analyses.
