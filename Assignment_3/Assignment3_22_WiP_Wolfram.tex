@@ -6,7 +6,8 @@
 \usepackage{multirow}
 \usepackage{epstopdf}
 \usepackage{amsmath}
-\usepackage{amssymb} % fuer Mengen \N, Q, C, R
+\usepackage{amssymb}
+\usepackage{hyperref} % fuer Mengen \N, Q, C, R
 \graphicspath{{./fig/}}
 
 
@@ -122,7 +123,7 @@ Wolfram Laube, K08900915\\
 %=======================================================================================
 
 
-\begin{aufgabe}{Sampling $1(40 \%)$}
+\begin{aufgabe}{Sampling 1 (40\%)}
 
 The analogue signal
 
@@ -132,17 +133,17 @@ x(t) = x_{1}(t) + x_{2}(t) = \sin \left(2 \pi f_{1} t\right) + \sin \left(2 \pi 
 
 with \(f_{1} = 4 \mathrm{kHz}\) and \(f_{2} = 6 \mathrm{kHz}\) is sampled with a sampling rate of \(f_{s} = 10 \mathrm{kHz}\) to yield the discrete time signal \(x[n]\).
 
-\begin{enumerate}[label=\alph*)]
-    \item Draw the spectrum of \(x(t)\).
+\begin{enumerate}
+    \item[(a)] Draw the spectrum of \(x(t)\).
 
-    \item Due to sampling frequency shifted versions of the analogue spectrum are generated.
+    \item[(b)] Due to sampling frequency shifted versions of the analogue spectrum are generated.
 
     Draw the spectra shifted by \(-f_{s}, 0\) and \(+f_{s}\) and then the spectrum for \(x[n]\) as a result of spectral addition in one diagram.
     The diagram should show the spectra in the range from \(-f_{s}\) to \(+f_{s}\).
 
     \emph{Hint: Draw real and imaginary parts of the spectrum rather than magnitude and phase to ease addition.}
 
-    \item In Matlab, plot the section 0 to \(2 \mathrm{~ms}\) of the signal \(x(t)\) with a sampling rate of \(100 \mathrm{kHz}\) to emulate an analogue signal.
+    \item[(c)] In Matlab, plot the section 0 to \(2 \mathrm{~ms}\) of the signal \(x(t)\) with a sampling rate of \(100 \mathrm{kHz}\) to emulate an analogue signal.
 
     Then also add the sampled signal \(x[n] = x\left(n T_{s}\right)\) to the same plot.
     Show that \(x[n]\) corresponds to the spectrum derived in (b).
@@ -151,97 +152,91 @@ with \(f_{1} = 4 \mathrm{kHz}\) and \(f_{2} = 6 \mathrm{kHz}\) is sampled with a
 
 \hrule
 \begin{enumerate}
-%\input{ex1_a_python_wip_wolfram}
-%\input{ex1_b_wip_wolfram}
-%\input{ex1_c_wip_wolfram}
-%\input{ex1_d_python_wip_wolfram}
-%\input{ex1_e_python_wip_wolfram}
-%\input{ex1_f_python_wip_wolfram}
+\input{ex1_a_python_wip_wolfram}
+\input{ex1_b_python_wip_wolfram}
+\input{ex1_c_python_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}
 
-\begin{aufgabe}{Convolution-1 (20\%)}
+\begin{aufgabe}{Sampling 2 (25\%)}
 
-The signal $x[n]=(3,-1,2,0,1)$ at sample times $n=(0,1,2,3,4)$ is the input to an LTI system with impulse response $h[n]=(2,3,4,1)$ at sample times $n=(0,1,2,3)$.
+The spectrum \(X(f)\) of an analogue signal \(x(t)\) is given with:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\textwidth]{fig/ex2_signal_spectrum}
+    \caption{Spectrum of \(x(t)\)}
+    \label{fig:ex2_signal_spectrum}
+\end{figure}
 
 \begin{enumerate}
-\item[(a)]
-How long is the output signal $y[n]$?
-\item[(b)]
-Manually calculate the output signal $y[n]$.
+    \item[(a)] Draw the real and imaginary parts of the spectrum \(X(f)\).
+
+    \item[(b)] \(x(t)\) is sampled with \(8 \mathrm{kHz}\) to yield the discrete time signal \(x[n]\).
+    Draw the spectrum of \(x[n]\) from \(-f_{s}\) to \(f_{s}\) and indicate the baseband.
+
 \end{enumerate}
+
 \hrule
 
 \begin{enumerate}
-%\input{ex2_a_wip_wolfram}
-%\input{ex2_b_wip_wolfram}
+\input{ex2_a_python_wip_wolfram}
+\input{ex2_b_python_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}
 
-\begin{aufgabe}{Convolution-2 (25\%)}
+\begin{aufgabe}{Reconstruction (35\%)}
 
-Consider a Linear Time-Invariant (LTI) system with an impulse response
-given by $h[n] = (0.25, 0.5, 0.25)$ at sample indices $n = (0, 1, 2)$.
-
-The input signal is defined as $x[n] = \cos \left(\frac{2 \pi}{20} n\right)$ for $0 \leq n < 50$.
+The discrete time signal \(x[n] = \sqrt{2} \cdot \sin \left(2 \pi \cdot \frac{1}{8} \cdot n\right)\) is converted to the analogue signal \(x(t)\) with a DAC which uses a clock frequency of \(8 \mathrm{kHz}\) and which converts a numerical value of 1 to \(1 \mathrm{~V}\).
 
 \begin{enumerate}
-\item[(a)]
-What is the length $L_y$ of the output signal $y[n]$?
+    \item[(a)] Up to $20 \mathrm{kHz}$, list all positive frequencies which occur (in general) in $x(t)$.
 
-\item[(b)]
-Implement the convolution operation $y[n] = \sum_{i=0}^{L_{h}-1} h[i] x[n-i]$ in Matlab using two nested for-loops.
-The outer for-loop should increment the output index $n$, and the inner for-loop should increment the memory index $i$.
-Calculate all $L_y$ output samples of $y[n]$.
+    \item[(b)] The DAC implements a zero-order hold reconstruction.
 
-\item[(c)]
-Plot the signal $y[n]$.
+    \begin{enumerate}
+        \item[(1)] What is the power (in \(\mathrm{dB}\)) of the baseband sinewave (the sine at the lowest frequency).
 
-\item[(d)]
-Verify the correct implementation of the convolution using the Matlab function \texttt{conv}.
-Plot both signals on top of each other, with the directly calculated signal in a solid line style
-and the signal obtained via \texttt{conv} in a dashed style.
-Provide a legend for your plot.
+        \item[(2)] What is the power (in \(\mathrm{dB}\)) of the first out-of-band sinewave (the sine with the second lowest frequency).
+    \end{enumerate}
 
+    \item[(c)] Qualitatively draw the spectrum of \(x(t)\) up to \(20 \mathrm{kHz}\). Delta pulses should be drawn with an arrow, the height of the arrow should indicate the weight of the delta-pulse.
 \end{enumerate}
+
+\textbf{Hints:}
+\begin{itemize}
+    \item The power of a sinewave with amplitude \(A\) is \(P=\frac{A^{2}}{2}\) (also see Parseval's theorem for periodic signals DSP\_02/27).
+
+    \item The impulse response of a zero-order reconstruction filter is a rectangular pulse, its frequency response is thus given in \emph{DSP\_02/43}.
+
+    \item When calculating the attenuation for the respective frequencies it should be noted that e.g. Matlab uses the normalized sinc function.
+\end{itemize}
+
 \hrule
 
 \begin{enumerate}
-%\input{ex3_a_wip_wolfram}
-%\input{ex3_b_python_wip_wolfram}
-%\input{ex3_c_python_wip_wolfram}
-%\input{ex3_d_python_wip_wolfram}
+\input{ex3_a_wip_wolfram}
+\input{ex3_b_wip_wolfram}
+\input{ex3_c_wip_wolfram}
 \end{enumerate}
 
 \end{aufgabe}
 
-\begin{aufgabe}{Discrete Time Fourier Transform (25\%)}
-The time discrete sequence $x[n]=(0.8)^{|n|}(u[n+10]-u[n-11])$ should be transformed to the frequency domain
-by using the discrete time Fourier transform (DTFT).
-As $x[n]$ has finite support (that means it is a sequence of finite length), $X\left(e^{j \Omega}\right)$
-can be determined numerically via Matlab (or alternatively Octave, Python).
+\begin{aufgabe}{Signal Processing Onramp - BONUS (15\%)}
+This task is optional (additional 15\%) and should help you to learn the basics of practical signal processing techniques in MATLAB.
+You will find out how to use spectral analysis and filtering for preprocessing, analyzing, and extracting information from signal data.
 
-\begin{enumerate}
-\item[(a)]
-Create a Matlab function, that is able to calculate the DTFT of a finite sequence.
-The function should provide the following interface:
+For that, you need to carry out the full \emph{'Signal Processing Onramp course'} [1].
+To get the bonus points, you need to add the certificate to your protocol (you can download a pdf -
+see \emph{'Share Certificate and Progress'}).
+Also, you need to share your progress with my account (\texttt{matthias.wagner@jku.at}),
+which can be done in the same tab.
 
-% Interface is described in the attached screenshot.
-
-Try to avoid for loops!
-You are still allowed to use for loops, however there will be a small deduction in points for the case you need to use for loops.
-
-\item[(b)]
-Plot magnitude and phase response of $X\left(e^{j \Omega}\right)$ for the interval $-\pi \leq \Omega \leq \pi$
-within single subplots.
-What do you observe for the phase response (hint: you should have a close look at the scaling of the $y$ axis)?
-
-\item[(c)]
-Vary the parameter $\Omega$.
-What do you observe in the spectrum?
-\end{enumerate}
+\begin{itemize}
+    \item[[1]] \url{https://matlabacademy.mathworks.com/details/signal-processing-onramp/signalprocessing}
+\end{itemize}
 
 \hrule
 

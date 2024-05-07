@@ -1,0 +1,45 @@
+%! Author = wolfram_e_laube
+%! Date = 06.05.24
+
+\item[(c)]
+The Python code accomplishing this is:
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+fs_analog = 100e3  # 100 kHz
+fs = 10e3  # 10 kHz
+f1 = 4e3  # 4 kHz
+f2 = 6e3  # 6 kHz
+t_end = 2e-3  # 2 ms
+
+# Time vectors
+t = np.arange(0, t_end, 1/fs_analog)
+n = np.arange(0, int(t_end * fs))
+
+# Analog signal
+x_t = np.sin(2 * np.pi * f1 * t) + np.sin(2 * np.pi * f2 * t)
+
+# Sampled signal
+x_n = np.sin(2 * np.pi * f1 * n / fs) + np.sin(2 * np.pi * f2 * n / fs)
+
+# Plotting
+plt.figure()
+plt.plot(t * 1e3, x_t, label='Analog signal x(t)')
+plt.stem(n * 1e3 / fs, x_n, linefmt='r', markerfmt='ro', basefmt=' ', label='Sampled signal x[n]', use_line_collection=True)
+plt.xlabel('Time (ms)')
+plt.ylabel('Amplitude')
+plt.title('Analog and Sampled Signals')
+plt.legend()
+plt.grid(True)
+plt.show()
+\end{verbatim}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot}
+    \caption{Analog and Sampled Signals of \(x(t)\)}
+    \label{fig:ex1_c_plot}
+\end{figure}
