@@ -2,10 +2,46 @@
 %! Date = 06.05.24
 
 \item[(b)]
-\begin{enumerate}
-    \item[(1)]
-    The power of the baseband sinewave is \(0 \mathrm{dB}\).
+\subsection{Task (b): Analysis of Signal Power with Zero-Order Hold Reconstruction}
 
-    \item[(2)]
-    The power of the first out-of-band sinewave can be calculated using the sinc function.
+\subsubsection{Problem Statement}
+Determine the power in decibels (dB) of the baseband sinewave and the first out-of-band sinewave resulting from a zero-order hold (ZOH) DAC conversion of the discrete-time signal
+$$
+x[n] = \sqrt{2} \cdot \sin\left(2\pi \frac{1}{8}n\right)
+$$
+The DAC operates at a sampling frequency of 8 kHz.
+
+\subsubsection{Step-by-Step Analysis}
+
+\begin{enumerate}
+    \item \textbf{Zero-Order Hold Impact on Spectrum:}
+    A zero-order hold effectively holds each sample value constant over the sample period until the next sample is taken. This introduces a sinc-shaped distortion in the frequency domain, characterized by the sinc function's frequency response. The sinc function causes attenuation and ripple in the frequency spectrum, modifying the original sinewave's amplitude.
+
+    \item \textbf{Baseband Sinewave Analysis:}
+    The baseband frequency, as calculated earlier, is 1000 Hz. The power of the sinewave \(P\) is given by \(P = A^2/2\), where \(A\) is the amplitude of the sinewave. For \(x[n]\), \(A = \sqrt{2}\), so \(P = 1\).
+
+    \item \textbf{Power in Decibels (dB) for Baseband Sinewave:}
+    Power in decibels is calculated using
+    $$
+    P_{dB} = 10 \log_{10}(P)
+    $$
+    Thus, the power in decibels of the baseband sinewave is:
+    $$
+    P_{dB} = 10 \log_{10}(1) = 0 \text{ dB}
+    $$
+    This result assumes no gain or loss in the system, which is idealized given the zero-order hold effect, which actually introduces some attenuation due to the sinc function's nature.
+
+    \item \textbf{First Out-of-Band Sinewave Analysis:}
+    The first out-of-band frequency component occurs due to the zero-order hold and would typically be at the first zero of the sinc function, which is at the sampling frequency minus the base frequency (8000 Hz - 1000 Hz = 7000 Hz). Due to the nature of the sinc function, the power at the first zero is theoretically zero, but just before this point, there is significant attenuation.
+
+    \item \textbf{Power in Decibels (dB) for the First Out-of-Band Sinewave:}
+    Estimating the power just before the zero crossing, considering sinc function's typical roll-off, might give a very low power level. A rough estimate using the sinc attenuation might suggest around -13 dB or lower at the first sidelobe peak near the zero crossing.
 \end{enumerate}
+
+\subsubsection{Conclusion}
+\begin{itemize}
+    \item The power of the baseband sinewave, considering an ideal DAC without accounting for practical attenuation due to ZOH, is 0 dB.
+    \item The power of the first out-of-band sinewave would be significantly lower, potentially around -13 dB or more, depending on the exact behavior of the sinc function's first sidelobe.
+\end{itemize}
+
+This analysis assumes an idealized scenario and does not factor in some practical aspects like filter design and DAC non-linearities.

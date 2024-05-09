@@ -2,4 +2,40 @@
 %! Date = 06.05.24
 
 \item[(a)]
-The positive frequencies are \( f_0, 2f_0, \ldots, n f_0 \) where \( f_0 = 1 \mathrm{kHz} \).
+\subsection{Task (a): Identification of Positive Frequencies in $x(t)$}
+
+\subsubsection{Problem Statement}
+Determine all positive frequencies which occur in the analog signal $x(t)$, derived from the discrete-time signal
+$$
+x[n] = \sqrt{2} \cdot \sin \left(2 \pi \cdot \frac{1}{8} \cdot n\right)
+$$
+using a DAC with a clock frequency of 8 kHz. Consider the frequency range up to 20 kHz.
+
+\subsubsection{Analysis}
+\begin{enumerate}
+    \item \textbf{Discrete-Time Signal Frequency:}
+    The discrete-time signal given is
+    $$
+    x[n] = \sqrt{2} \cdot \sin \left(2 \pi \cdot \frac{1}{8} \cdot n\right)
+    $$
+    Here, $\frac{1}{8}$ represents the normalized frequency with respect to the sampling frequency $f_s$.
+
+    \item \textbf{Calculation of the Signal's Fundamental Frequency:}
+    Given $f_s = 8000$ Hz (8 kHz), the frequency of the sinusoidal component can be calculated as follows:
+    $$
+    f = f_s \cdot \frac{1}{8} = 8000 \cdot \frac{1}{8} = 1000 \text{ Hz}
+    $$
+    Therefore, the fundamental frequency of the sinusoid is 1000 Hz.
+
+    \item \textbf{Frequency Content in $x(t)$:}
+    Since $x[n]$ is being sampled at 8 kHz to convert to $x(t)$, and considering the frequency of $x[n]$ is well within the Nyquist limit, the primary frequency in the analog signal $x(t)$ is the same as the fundamental frequency of $x[n]$.
+
+    \item \textbf{Other Possible Frequencies:}
+    Theoretically, if non-linearities or higher order effects were present (not specified here), additional frequencies could arise. Due to the sampling and reconstruction process, aliasing should not occur if all system components operate ideally and the signal is bandlimited properly by an anti-aliasing filter before sampling.
+\end{enumerate}
+
+\subsubsection{Conclusion}
+For the given signal and DAC specifications:
+\begin{itemize}
+    \item The positive frequency that occurs in $x(t)$ up to 20 kHz is primarily the fundamental frequency of 1000 Hz. Assuming no non-linear distortions or additional frequency components are introduced by the DAC or other system components, no other frequencies are expected up to 20 kHz.
+\end{itemize}
