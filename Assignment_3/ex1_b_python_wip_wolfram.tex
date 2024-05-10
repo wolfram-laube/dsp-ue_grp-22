@@ -2,40 +2,17 @@
 %! Date = 06.05.24
 
 \item[(b)]
-Here is a Python code snippet that accomplishes this:
+\section{Task (b): Fourier Transform and Spectrum Visualization}
 
-\begin{verbatim}
-import numpy as np
-import matplotlib.pyplot as plt
+\subsection{Fourier Transform of $x(t)$}
+Given the signal $x(t) = \sin(2\pi 4000 t) + \sin(2\pi 6000 t)$, we calculate the Fourier transform, which reveals delta functions at the frequencies of the sinusoidal components:
+$$
+X(f) = \frac{1}{2i} \left(\delta(f - 4000) - \delta(f + 4000) + \delta(f - 6000) - \delta(f + 6000)\right)
+$$
+This expression indicates that the spectrum of $x(t)$ consists of spikes at $\pm 4000$ Hz and $\pm 6000$ Hz.
 
-# Parameters
-fs = 10e3  # 10 kHz
-f1 = 4e3  # 4 kHz
-f2 = 6e3  # 6 kHz
-frequencies = np.array([f1, f2])
-
-# Spectrum shifting
-def plot_shifted_spectrum(frequencies, fs):
-    # Shift frequencies for -fs, 0, and +fs
-    shifts = [-fs, 0, fs]
-    shifted_freqs = [frequencies + s for s in shifts]
-
-    plt.figure()
-    for s_freqs, s in zip(shifted_freqs, shifts):
-        for freq in s_freqs:
-            plt.axvline(x=freq / 1e3, linestyle='-', color='b')
-            plt.axvline(x=-freq / 1e3, linestyle='-', color='b')
-
-    plt.xlabel('Frequency (kHz)')
-    plt.ylabel('Amplitude')
-    plt.title('Shifted Spectrum')
-    plt.grid(True)
-    plt.xlim(-15, 15)  # From -15 kHz to 15 kHz
-    plt.show()
-
-# Plot the shifted spectrum
-plot_shifted_spectrum(frequencies, fs)
-\end{verbatim}
+\subsection{Spectrum Visualization and Sampling Effects}
+The spectrum is then visualized, taking into account the sampling frequency $f_s = 10,000$ Hz, which leads to periodic replication of the spectrum. The replication and the combination of these spectra due to sampling are illustrated to show how aliasing could affect the resultant digital signal $x[n]$. The effects are demonstrated using a Python script that plots the original and shifted spectra within the range $-f_s$ to $+f_s$.
 
 \begin{figure}[h]
     \centering

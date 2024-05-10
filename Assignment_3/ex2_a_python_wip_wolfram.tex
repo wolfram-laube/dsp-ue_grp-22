@@ -4,47 +4,44 @@
 \item[(a)]
 \subsection{Task (a): Real and Imaginary Parts of $X(f)$}
 
-\subsubsection{Problem Statement}
-Visualize the real and imaginary components of the frequency spectrum $X(f)$, given its magnitude $|X(f)|$ and phase $\phi_x(f)$, and discuss the implications of these components in signal processing.
+\subsection{Problem Statement}
+The task involves analyzing the spectrum $X(f)$ of an analog signal $x(t)$, where the spectrum's magnitude and phase are given by specific mathematical functions. The goal is to draw and interpret the real and imaginary parts of the spectrum $X(f)$ based on these definitions.
 
-\subsubsection{Mathematical Formulation}
-Given:
+\subsection{Analysis}
+\subsubsection{Spectrum Definitions}
+The spectrum of the signal is defined in terms of its magnitude $|X(f)|$ and phase $\phi_x(f)$ as follows:
 \begin{itemize}
     \item \textbf{Magnitude $|X(f)|$:}
     \[
     |X(f)| =
     \begin{cases}
-    A & \text{if } -5 \leq f < -1 \text{ or } 1 < f \leq 5 \\
-    A(1 + f) & \text{if } -1 \leq f < 0 \\
-    A(1 - f) & \text{if } 0 \leq f \leq 1 \\
+    A & \text{for } -5 \leq f \leq -1 \text{ and } 1 \leq f \leq 5 \\
+    -Af & \text{for } -1 \leq f < 0 \\
+    Af & \text{for } 0 \leq f < 1 \\
     0 & \text{otherwise}
     \end{cases}
     \]
-
     \item \textbf{Phase $\phi_x(f)$:}
     \[
     \phi_x(f) =
     \begin{cases}
-    \frac{\pi}{2} & \text{if } -5 \leq f < 0 \\
-    -\frac{\pi}{2} & \text{if } 0 < f \leq 5 \\
-    0 & \text{otherwise}
+    \frac{\pi}{2} & \text{if } f < 0 \\
+    -\frac{\pi}{2} & \text{if } f > 0 \\
+    0 & \text{if } |f| > 5
     \end{cases}
     \]
 \end{itemize}
+These functions delineate a filter-like response, manipulating the amplitude of the signal across various frequency ranges, accentuating or attenuating frequencies based on the system's design.
 
-Using Euler's formula:
-\[
-X(f) = |X(f)| \cdot e^{i \phi_x(f)}
-\]
-\[
-\text{Re}\{X(f)\} = |X(f)| \cos(\phi_x(f))
-\]
-\[
-\text{Im}\{X(f)\} = |X(f)| \sin(\phi_x(f))
-\]
+\subsubsection{Computational Analysis}
+Using Python with libraries such as NumPy and Matplotlib, the real $\text{Re}\{X(f)\}$ and imaginary $\text{Im}\{X(f)\}$ parts of the spectrum were computed based on the defined magnitude and phase. These parts were then visualized to provide insight into the distribution of the signal's spectral characteristics across the frequency spectrum.
 
-\subsubsection{Discussion}
-The real part $\text{Re}\{X(f)\}$ is zero for all $f$, reflecting the phase shifts of $\frac{\pi}{2}$ and $-\frac{\pi}{2}$. The imaginary part $\text{Im}\{X(f)\}$ shows variations with $f$, mirroring the magnitude adjustments and the sinusoidal phase behavior.
+\subsection{Conclusion}
+The plots of the real and imaginary parts illustrate how the signal's spectrum is influenced by its magnitude and phase characteristics:
+\begin{itemize}
+    \item The \textbf{real part} is significant mainly near zero, reflecting the brief non-zero contributions of $\cos(\phi_x(f))$ as it passes through zero at $f = 0$.
+    \item The \textbf{imaginary part} demonstrates variable contributions, capturing the essence of the magnitude changes across the specified frequency ranges, showing the system's handling of different frequency components.
+\end{itemize}
 
 \begin{figure}[h]
     \centering
