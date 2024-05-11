@@ -2,44 +2,31 @@
 %! Date = 06.05.24
 
 \item[(c)]
-The Python code accomplishing this is:
+\section{Exercise 1 Task (c): Visualization of Continuous and Sampled Signals}
 
-\begin{verbatim}
-import numpy as np
-import matplotlib.pyplot as plt
+\subsection{Problem Statement}
+This task involves plotting the analog signal $x(t)$, emulated at a high sampling rate to approximate continuous behavior, and the corresponding sampled signal $x[n]$ over a 2 ms interval. The goal is to visually demonstrate that $x[n]$ accurately represents $x(t)$, confirming the effects seen in the spectral analysis from Task (b).
 
-# Parameters
-fs_analog = 100e3  # 100 kHz
-fs = 10e3  # 10 kHz
-f1 = 4e3  # 4 kHz
-f2 = 6e3  # 6 kHz
-t_end = 2e-3  # 2 ms
+\subsection{Signal Definition}
+The signal $x(t)$ is defined as:
+$$
+x(t) = \sin(2\pi 4000 t) + \sin(2\pi 6000 t),
+$$
+where $f_1 = 4000 \text{ Hz}$ and $f_2 = 6000 \text{ Hz}$. It is sampled at a rate of 10 kHz to produce $x[n]$.
 
-# Time vectors
-t = np.arange(0, t_end, 1/fs_analog)
-n = np.arange(0, int(t_end * fs))
-
-# Analog signal
-x_t = np.sin(2 * np.pi * f1 * t) + np.sin(2 * np.pi * f2 * t)
-
-# Sampled signal
-x_n = np.sin(2 * np.pi * f1 * n / fs) + np.sin(2 * np.pi * f2 * n / fs)
-
-# Plotting
-plt.figure()
-plt.plot(t * 1e3, x_t, label='Analog signal x(t)')
-plt.stem(n * 1e3 / fs, x_n, linefmt='r', markerfmt='ro', basefmt=' ', label='Sampled signal x[n]', use_line_collection=True)
-plt.xlabel('Time (ms)')
-plt.ylabel('Amplitude')
-plt.title('Analog and Sampled Signals')
-plt.legend()
-plt.grid(True)
-plt.show()
-\end{verbatim}
+\subsection{Conclusion}
+The resulting plot demonstrates that the sampled signal $x[n]$ at 10 kHz captures the waveform of the continuous signal $x(t)$ effectively. The discrete points align well with the peaks and troughs of the emulated analog signal, confirming the sufficiency of the sampling rate and corroborating the spectral analysis presented in Task (b).
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot}
+    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot_1}
     \caption{Analog and Sampled Signals of \(x(t)\)}
-    \label{fig:ex1_c_plot}
+    \label{fig:ex1_c_plot_1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot_2}
+    \caption{Analog and Sampled Signals of \(x(t)\)}
+    \label{fig:ex1_c_plot_2}
 \end{figure}
