@@ -2,31 +2,33 @@
 %! Date = 06.05.24
 
 \item[(c)]
-\section{Exercise 1 Task (c): Visualization of Continuous and Sampled Signals}
+\section*{Exercise 1 Task (c): Sampling and Frequency Analysis}
 
-\subsection{Problem Statement}
-This task involves plotting the analog signal $x(t)$, emulated at a high sampling rate to approximate continuous behavior, and the corresponding sampled signal $x[n]$ over a 2 ms interval. The goal is to visually demonstrate that $x[n]$ accurately represents $x(t)$, confirming the effects seen in the spectral analysis from Task (b).
+\subsection*{Objective}
+To visually demonstrate the effect of a high sampling rate on a discrete-time signal and confirm the frequency spectrum through FFT analysis.
 
-\subsection{Signal Definition}
-The signal $x(t)$ is defined as:
-$$
-x(t) = \sin(2\pi 4000 t) + \sin(2\pi 6000 t),
-$$
-where $f_1 = 4000 \text{ Hz}$ and $f_2 = 6000 \text{ Hz}$. It is sampled at a rate of 10 kHz to produce $x[n]$.
+\subsection*{Theoretical Background}
+Sampling a continuous-time signal at a discrete rate preserves the signal's characteristics if the sampling frequency exceeds twice the highest frequency component of the signal. This practice helps prevent aliasing, ensuring that the discrete representation closely matches the original signal. FFT analysis of the sampled signal provides a quantitative view of the frequency components, further validating the sampling process.
 
-\subsection{Conclusion}
-The resulting plot demonstrates that the sampled signal $x[n]$ at 10 kHz captures the waveform of the continuous signal $x(t)$ effectively. The discrete points align well with the peaks and troughs of the emulated analog signal, confirming the sufficiency of the sampling rate and corroborating the spectral analysis presented in Task (b).
+\subsection*{Signal Sampling and Visualization}
+The signal $x(t) = \sin(2\pi 4000t) + \sin(2\pi 6000t)$ is sampled at a rate of 100 kHz. This section visualizes the continuous and sampled versions to illustrate how the sampled signal closely follows the continuous signal due to adequate sampling rate.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot_1}
-    \caption{Analog and Sampled Signals of \(x(t)\)}
-    \label{fig:ex1_c_plot_1}
+    \includegraphics[width=0.8\textwidth]{fig/ex1_c_plot.png}
+    \caption{Overlay of the continuous signal $x(t)$ and its sampled version $x[n]$, showing the fidelity of the sampling process at 100 kHz.}
+    \label{fig:ex1c_signal_sampling}
 \end{figure}
+
+\subsection*{FFT Analysis}
+Following the signal visualization, an FFT is performed on $x[n]$ to analyze its frequency spectrum. This spectral analysis confirms that the primary frequency components of the signal are captured without distortion.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.49\textwidth]{fig/ex1_c_plot_2}
-    \caption{Analog and Sampled Signals of \(x(t)\)}
-    \label{fig:ex1_c_plot_2}
+    \includegraphics[width=0.8\textwidth]{fig/ex1_c_fft_plot.png}
+    \caption{FFT of the sampled signal $x[n]$, highlighting the presence of frequency components at 4000 Hz and 6000 Hz, validating the absence of aliasing and the accuracy of the sampling rate.}
+    \label{fig:ex1c_fft_analysis}
 \end{figure}
+
+\subsection*{Conclusion}
+Both the time-domain visualization and the frequency-domain analysis confirm that the sampling rate of 100 kHz is sufficient to capture all significant frequency components of $x(t)$. This ensures that the sampled signal $x[n]$ maintains the integrity of the original signal, validating the spectral analysis from Task (b) and demonstrating the effectiveness of proper sampling techniques.
