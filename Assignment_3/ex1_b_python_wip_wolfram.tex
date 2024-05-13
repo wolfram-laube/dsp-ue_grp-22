@@ -11,12 +11,12 @@ Sampling a signal at a frequency $f_s$ creates replicas of its spectrum at multi
 Given the original frequencies $f_1 = 4$ kHz and $f_2 = 6$ kHz, the sampling frequency $f_s = 10$ kHz does not satisfy the Nyquist criterion, which requires the sampling rate to be at least twice the highest frequency present in the signal, i.e., $12$ kHz. We analyze the spectrum shifts at $-f_s$, $0$, and $+f_s$ and their overlap within the range of $-f_s$ to $+f_s$, demonstrating how insufficient sampling leads to aliasing.
 
 \subsection*{Visualization}
-The following figure illustrates the shifted spectra and the resulting spectrum due to aliasing, emphasizing the impact of an insufficient sampling rate.
+Figure~\ref{fig:ex1b_spectrum} illustrates the shifted spectra and the resulting spectrum due to aliasing, emphasizing the impact of an insufficient sampling rate.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_b_plot.png}
-    \caption{Shifted spectra and resulting spectrum of $x[n]$, demonstrating aliasing at a sampling frequency of 10 kHz. Noticeable overlap between the original and shifted components illustrates the aliasing effect due to undersampling.}
+    \includegraphics[width=0.8\textwidth]{fig/ex1_b_plot}
+    \caption{Shifted spectra and resulting spectrum of $x[n]$}
     \label{fig:ex1b_spectrum}
 \end{figure}
 

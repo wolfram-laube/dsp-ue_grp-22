@@ -8,25 +8,29 @@
 To visually demonstrate the effect of a high sampling rate on a discrete-time signal and confirm the frequency spectrum through FFT analysis.
 
 \subsection*{Theoretical Background}
-Sampling a continuous-time signal at a discrete rate preserves the signal's characteristics if the sampling frequency exceeds twice the highest frequency component of the signal. This practice helps prevent aliasing, ensuring that the discrete representation closely matches the original signal. FFT analysis of the sampled signal provides a quantitative view of the frequency components, further validating the sampling process.
+Sampling a continuous-time signal at a discrete rate preserves the signal's characteristics if the sampling frequency exceeds twice the highest frequency component of the signal.
+This practice helps prevent aliasing, ensuring that the discrete representation closely matches the original signal.
+FFT analysis of the sampled signal provides a quantitative view of the frequency components, further validating the sampling process.
 
 \subsection*{Signal Sampling and Visualization}
-The signal $x(t) = \sin(2\pi 4000t) + \sin(2\pi 6000t)$ is sampled at a rate of 100 kHz. This section visualizes the continuous and sampled versions to illustrate how the sampled signal closely follows the continuous signal due to adequate sampling rate.
+The signal $x(t) = \sin(2\pi 4000t) + \sin(2\pi 6000t)$ is sampled at a rate of 100 kHz.
+Figure~\ref{fig:ex1c_signal_sampling} visualizes the continuous and sampled versions to illustrate how the sampled signal closely follows the continuous signal due to adequate sampling rate.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_c_plot.png}
-    \caption{Overlay of the continuous signal $x(t)$ and its sampled version $x[n]$, showing the fidelity of the sampling process at 100 kHz.}
+    \includegraphics[width=0.8\textwidth]{fig/ex1_c_plot}
+    \caption{Overlay of $x(t)$ and $x[n]$}
     \label{fig:ex1c_signal_sampling}
 \end{figure}
 
 \subsection*{FFT Analysis}
-Following the signal visualization, an FFT is performed on $x[n]$ to analyze its frequency spectrum. This spectral analysis confirms that the primary frequency components of the signal are captured without distortion.
+Following the signal visualization, an FFT is performed on $x[n]$ to analyze its frequency spectrum.
+This spectral analysis visualized in Figure~\ref{fig:ex1c_fft_analysis} confirms that the primary frequency components of the signal are captured without distortion.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_c_fft_plot.png}
-    \caption{FFT of the sampled signal $x[n]$, highlighting the presence of frequency components at 4000 Hz and 6000 Hz, validating the absence of aliasing and the accuracy of the sampling rate.}
+    \includegraphics[width=0.8\textwidth]{fig/ex1_c_fft_plot}
+    \caption{FFT of $x[n]$}
     \label{fig:ex1c_fft_analysis}
 \end{figure}
 

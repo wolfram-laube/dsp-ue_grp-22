@@ -2,7 +2,8 @@
 \section*{Exercise 3 Task (b): Power Analysis of DAC Output}
 
 \subsection*{Objective}
-This task calculates the power in dB for the baseband and first out-of-band sinewaves in the output of a DAC that implements a zero-order hold. This analysis helps understand the impact of DAC reconstruction methods on signal integrity.
+This task calculates the power in dB for the baseband and first out-of-band sinewaves in the output of a DAC that implements a zero-order hold.
+This analysis helps understand the impact of DAC reconstruction methods on signal integrity.
 
 \subsection*{Analytical Method}
 The power levels are calculated using the sinc function that models the frequency response of the zero-order hold:
@@ -13,14 +14,15 @@ The power in dB for a frequency component is given by:
 \[
 P_{dB} = 20 \log_{10}(|H(f)|)
 \]
-where \(|H(f)|\) is the magnitude of the frequency response at the frequency \(f\).
+where \(|H(f)|\) is the magnitude of the frequency response at the frequency \(f\)
+and \( T \) is the sampling period corresponding to the sampling frequency.
 
 \subsection*{Results}
 The calculated power levels for the sinewaves are:
 \begin{itemize}
-\item Power of the baseband sinewave (1 kHz): \( \text{Power\_baseband\_db} \) dB
-\item Power of the first out-of-band sinewave (7 kHz): \( \text{Power\_outofband\_db} \) dB
+\item Power of the baseband sinewave (1 kHz): \( -0.22 \) dB
+\item Power of the first out-of-band sinewave (7 kHz): \( -17.13 \) dB
 \end{itemize}
 
 \subsection*{Conclusion}
-The zero-order hold significantly attenuates higher frequency components, as evidenced by the attenuation seen in the first out-of-band sinewave compared to the baseband sinewave. Understanding these attenuation effects is essential for designing systems that accurately reconstruct the original signal from its samples.
+The zero-order hold significantly attenuates higher frequency components, as evidenced by the attenuation seen in the first out-of-band sinewave compared to the baseband sinewave.
