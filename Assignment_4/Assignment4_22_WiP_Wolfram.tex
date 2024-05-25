@@ -1,0 +1,232 @@
+\documentclass[12pt,a4paper,austrian]{article}
+\usepackage{graphicx}
+\usepackage[austrian, english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{listings}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % fuer Mengen \N, Q, C, R
+\graphicspath{{./fig/}}
+
+
+%% Satzspiegel
+\setlength{\hoffset}{-1in} \setlength{\textwidth}{18cm}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\marginparsep}{0.7em}
+\setlength{\marginparwidth}{0.5cm}
+
+\setlength{\voffset}{-1.9in}
+\setlength{\headheight}{12pt}
+\setlength{\topmargin}{2.6cm}
+\addtolength{\topmargin}{-\headheight}
+\setlength{\headsep}{3.5cm}
+\addtolength{\headsep}{-\topmargin}
+\addtolength{\headsep}{-\headheight}
+\setlength{\textheight}{27cm}
+
+%% How should floats be treated?
+\setlength{\floatsep}{12 pt plus 0 pt minus 8 pt}
+\setlength{\textfloatsep}{12 pt plus 0pt minus 8 pt}
+\setlength{\intextsep}{12 pt plus 0pt minus 8 pt}
+
+\tolerance2000
+\emergencystretch20pt
+
+%% Text appearence
+% English text
+\newcommand{\eg}[1]%
+{\selectlanguage{english}\textit{#1}\selectlanguage{austrian}}
+
+\newcommand{\filename}[1]
+{\begin{small}\texttt{#1}\end{small}}
+
+\newcommand\IFT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle*{1.7}}\end{picture}}
+\newcommand\FT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle*{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle{1.7}}\end{picture}}
+
+% A box for multiple choice problems
+\newcommand{\choicebox}{\fbox{\rule{0pt}{0.5ex}\rule{0.5ex}{0pt}}}
+
+\newenvironment{wahrfalsch}%
+{\bigskip\par\noindent\makebox[1cm][c]{richtig}\hspace{3mm}\makebox[1cm][c]{falsch}
+    \begin{list}%
+    {\makebox[1cm][c]{\choicebox}\hspace{3mm}\makebox[1cm][c]{\choicebox}}%
+    {\setlength{\labelwidth}{2.31 cm}\setlength{\labelsep}{3mm}
+    \setlength{\leftmargin}{2.61 cm}\setlength{\listparindent}{0pt}
+    \setlength{\itemindent}{0pt}}%
+    }
+    {\end{list}}
+
+\newcounter{theaufgabe}\setcounter{theaufgabe}{1}
+\newenvironment{aufgabe}[1]%
+{\bigskip\par\noindent\begin{nopagebreak}
+                          \textsf{\textbf{\arabic{theaufgabe}.\thinspace Aufgabe}}\quad
+                          \textsf{\textit{#1}}\\*[1ex]%
+                          \stepcounter{theaufgabe}\hspace{2ex}
+\end{nopagebreak}}
+{\par\pagebreak[2]}
+
+% Innerhalb der Aufgaben erfolgt die weitere Unterteilung mittels einer
+% enumerate Umgebung, die allerdings a), b),... zaehlen soll.
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+% A box to tick for everything which has to done
+\newcommand{\abgabe}{\marginpar{$\Box$}}
+% Margin paragraphs on the left side
+\reversemarginpar
+
+% Language for listings
+%\lstset{language=Vhdl,
+%  basicstyle=\small\tt,
+% keywordstyle=\tt\bf,
+% commentstyle=\sl}
+
+% No indention
+\setlength{\parindent}{0.0cm}
+% Don't number sections
+\setcounter{secnumdepth}{0}
+
+
+%% Beginning of the text
+
+\begin{document}
+    \selectlanguage{austrian}
+    \pagestyle{plain}
+
+
+%===  This is the header section ============================================================
+    \thispagestyle{empty}
+    \noindent
+    \begin{minipage}[b][4cm]{1.0\textwidth}
+        \begin{center}
+            \begin{bf}
+                \begin{large}
+                    Digital Signal Processing SS 2024 -- 4.~Assignment
+                \end{large} \\
+                \vspace{0.3cm}
+                \begin{Large}
+                    Reconstruction, DFT, FFT, STFT
+                \end{Large} \\
+                \vspace{0.3cm}
+            \end{bf}
+            \begin{large}
+                Group 22\\
+                Julian Feichtinger, K12015812\\
+                Wolfram Laube, K08900915\\
+            \end{large}
+        \end{center}
+    \end{minipage}
+
+    \noindent \rule[0.8em]{\textwidth}{0.12mm}\\[-0.5em]
+%=======================================================================================
+
+
+    \begin{aufgabe}{Sampling 1 (40\%)}
+
+        Consider the analog signal
+
+        $$
+        x(t)=1+0.5 \cos \left(2 \pi f_{1} t\right)+2 \sin \left(2 \pi f_{2} t\right)+\sin \left(2 \pi f_{3} t\right)
+        $$
+
+        with $f_{1}=2 k \mathrm{kz}, f_{2}=4 \mathrm{kHz}$ and $f_{3}=6 \mathrm{kHz}$.
+
+        \begin{enumerate}
+            \item[a)] Sketch the Fourier transform of $x(t)$ and plot the analog signal $x(t)$ in Matlab using a timevector $t=0: 1 e-6: 1 e-3$.
+
+            \item[b)]  Sample the analog signal $x(t)$ with sampling frequencies $f_{s 1}=9 \mathrm{kHz}$ and $f_{s 2}=14 \mathrm{kHz}$, which yield $x_{1}[n]$ and $x_{2}[n]$, respectively.
+            Sketch the corresponding DTFT spectra.
+
+            \item[c)]  After ideal reconstruction you end up with the analog signals $x_{1}(t)$ and $x_{2}(t)$.
+            Sketch the reconstructed analog spectra.
+            Plot the reconstructed time-domain signal.
+            Compare your results with point a).
+        \end{enumerate}
+
+        \hrule
+        \begin{enumerate}
+            \input{ex1_a_python_wip_wolfram}
+            \input{ex1_b_python_wip_wolfram}
+            \input{ex1_c_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Sampling 2 (25\%)}
+
+        100 values of an analog signal $x(t)$ were measured with a sampling time of $1 \mathrm{~ms}$, leading to the discrete-time signal $x[n]$.
+        This time domain signal $x[n]$ is transformed to frequency domain using the DFT/FFT, i.e., a 100-point DFT/FFT is calculated.
+
+        \begin{enumerate}
+            \item[(a)] What is the frequency spacing between two neighboring spectral points in the DFT spectrum, i.e., what is the frequency resolution?
+
+            \item[(b)] What is the "period" of the DFT spectrum in terms of samples, in terms of frequency, and in terms of normalized angular frequency?
+
+            We now append zeros to the discrete-time signal $x[n]$ to obtain a signal that has a length of 128 samples.
+
+            \item[(c)] Why do we append exactly so many zeros, so that a total signal of length $128=2^{7}$ results?
+
+            \item[(d)] What is the frequency spacing between two neighboring spectral points in the DFT spectrum now?
+
+            \item[(e)] How can the changed distance between two neighboring spectral points be interpreted?
+        \end{enumerate}
+
+        \hrule
+
+        \begin{enumerate}
+    %        \input{ex2_a_python_wip_wolfram}
+    %        \input{ex2_b_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Reconstruction (35\%)}
+
+In image processing, besides other methods, also the FFT can be utilized to conduct edge detection. To this end, a two-dimensional FFT (MATLAB command: $f f t 2$ ) is calculated from an image to transform it from spatial domain to frequency domain. Here, edges in an image produce high frequencies in the corresponding spectrum.
+
+In this exercise, you should make the edges of an image visible. Start by making yourself familiar with the MatLAB script fft_edge_detection. Now filter the image in frequency domain, such that the edges become visible after a transformation back to spatial domain. Describe your approach and justify why it works. A solution could look the one depicted in Fig. 1.
+![](https://cdn.mathpix.com/cropped/2024_05_20_fb408b21a3cafdbd1f66g-2.jpg?height=480&width=1612&top_left_y=771&top_left_x=220)
+
+Figure 1 Example for edge detection with the FFT.
+
+        \hrule
+
+        \begin{enumerate}
+%            \input{ex3_a_wip_wolfram}
+%            \input{ex3_b_wip_wolfram}
+%            \input{ex3_c_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Signal Processing Onramp - BONUS (15\%)}
+        This task is optional (additional 15\%) and should help you to learn the basics of practical signal processing techniques in MATLAB.
+        You will find out how to use spectral analysis and filtering for preprocessing, analyzing, and extracting information from signal data.
+
+        For that, you need to carry out the full \emph{'Signal Processing Onramp course'}.
+        \footnote{\url{https://matlabacademy.mathworks.com/details/signal-processing-onramp/signalprocessing}}
+        To get the bonus points, you need to add the certificate to your protocol (you can download a pdf -
+        see \emph{'Share Certificate and Progress'}).
+        Also, you need to share your progress with my account (\texttt{matthias.wagner@jku.at}),
+        which can be done in the same tab.
+
+        \vspace{1em}
+        \hrule
+
+%\begin{enumerate}
+%        \input{ex4_a_python_wip_wolfram}
+%        \input{ex4_b_python_wip_wolfram}
+%        \input{ex4_c_python_wip_wolfram}
+%\end{enumerate}
+
+    \end{aufgabe}
+
+
+\end{document}
