@@ -1,25 +1,37 @@
-\item[(a)]
-\section*{Task (a)}
+\item[(f)]
+\section*{Task (f)}
 
 \subsection*{Problem Statement}
-% TODO insert problem statement here
+Answer the following questions:
 
-\subsection*{Theoretical Background}
-% TODO insert theoretical here
+\begin{enumerate}
+    \item What is the essential difference between the diagrams plotted in (b) and (c), and what becomes apparent in the diagram in (c) that cannot be observed from the diagram in (b)?
+    \item Give an example of an application of the STFT and describe it briefly.
+\end{enumerate}
 
-\subsection*{Mathematical Derivation}
-% TODO insert mathematical derivation here
+\subsection*{Analysis}
 
-\subsection*{Python Implementation and Plot}
-% TODO insert plot description here
-The plot Figure~\ref{fig:ex1_a_plot} below illustrates these this
+\subsubsection*{Difference Between Diagrams in (b) and (c)}
 
-% TODO insert plot here
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_a_plot}
-    \caption{Exercise 1 Task (a)}
-    \label{fig:ex1_a_plot}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Diagram (b)}: This plot shows the magnitude of the spectrum of the entire signal. It provides a global view of all the frequencies present in the signal but does not provide any information about the time at which these frequencies occur. This means it is useful for identifying all the frequencies in the signal but not for determining when each frequency is present.
 
-\subsection*{Conclusion}
+    \item \textbf{Diagram (c)}: This plot shows the Short-Time Fourier Transform (STFT) magnitude of the signal. It provides a time-frequency representation, showing how the frequency content of the signal changes over time. Each block of the signal is transformed individually into the frequency domain, which allows us to see when specific frequencies occur within the signal.
+
+    \item \textbf{Apparent Information in (c)}: The STFT diagram (c) reveals the temporal evolution of the signal's frequency content. This is particularly useful for signals whose frequency characteristics change over time, like the DTMF signal. The ability to observe these changes over time cannot be achieved with the global FFT diagram (b).
+\end{itemize}
+
+\subsubsection*{Application of the STFT}
+
+\textbf{Application}: Speech Processing
+
+\textbf{Description}:
+The STFT is widely used in speech processing applications, such as speech recognition, speaker identification, and audio coding. In these applications, it is crucial to analyze the time-varying frequency content of speech signals.
+
+\begin{itemize}
+    \item \textbf{Speech Recognition}: The STFT is used to convert speech signals into a time-frequency representation, which is then used to extract features for recognizing spoken words or phrases. The time-frequency representation helps capture the dynamic nature of speech, where different phonemes have distinct frequency characteristics over time.
+
+    \item \textbf{Speaker Identification}: By analyzing the STFT of speech signals, unique frequency patterns associated with an individual's voice can be identified. These patterns are used to distinguish between different speakers.
+
+    \item \textbf{Audio Coding}: In audio compression techniques like MP3, the STFT is used to transform the audio signal into a time-frequency domain. This allows for efficient compression by identifying and encoding only the most perceptually relevant frequency components, while discarding less important information.
+\end{itemize}

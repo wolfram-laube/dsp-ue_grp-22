@@ -1,25 +1,31 @@
-\item[(a)]
-\section*{Task (a)}
+\item[(e)]
+\section*{Task (e)}
 
 \subsection*{Problem Statement}
-% TODO insert problem statement here
+On the basis of the plotted diagram in (c), determine the symbol sequence that has been used for generating the total signal.
 
-\subsection*{Theoretical Background}
-% TODO insert theoretical here
+\subsection*{Analysis}
+By analyzing the STFT magnitude plot from Task (c), we can identify the prominent frequency pairs in each time block and map them to the corresponding DTMF symbols.
 
-\subsection*{Mathematical Derivation}
-% TODO insert mathematical derivation here
+\begin{enumerate}
+    \item Extract the prominent frequencies in each time block from the STFT plot.
+    \item Map each frequency pair to the corresponding symbol using the DTMF frequency table.
+\end{enumerate}
 
-\subsection*{Python Implementation and Plot}
-% TODO insert plot description here
-The plot Figure~\ref{fig:ex1_a_plot} below illustrates these this
+Based on the STFT magnitude plot, the identified frequency pairs and their corresponding symbols are as follows:
 
-% TODO insert plot here
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_a_plot}
-    \caption{Exercise 1 Task (a)}
-    \label{fig:ex1_a_plot}
-\end{figure}
+\begin{itemize}
+    \item Time Block 1: 697 Hz and 1209 Hz $\rightarrow$ Symbol 1
+    \item Time Block 2: 770 Hz and 1336 Hz $\rightarrow$ Symbol 5
+    \item Time Block 3: 852 Hz and 1477 Hz $\rightarrow$ Symbol 9
+    \item Time Block 4: 941 Hz and 1633 Hz $\rightarrow$ Symbol D
+    \item Time Block 5: 697 Hz and 1336 Hz $\rightarrow$ Symbol 2
+    \item Time Block 6: 770 Hz and 1477 Hz $\rightarrow$ Symbol 6
+    \item Time Block 7: 852 Hz and 1209 Hz $\rightarrow$ Symbol 7
+    \item Time Block 8: 941 Hz and 1477 Hz $\rightarrow$ Symbol #
+\end{itemize}
+
+Thus, the symbol sequence used for generating the total signal is: 1, 5, 9, D, 2, 6, 7, #.
 
 \subsection*{Conclusion}
+By analyzing the STFT magnitude plot, we were able to identify the frequency pairs present in each time block and map them to the corresponding DTMF symbols. The resulting symbol sequence used for generating the total signal is: 1, 5, 9, D, 2, 6, 7, #.

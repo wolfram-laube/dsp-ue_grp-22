@@ -1,25 +1,32 @@
-\item[(a)]
-\section*{Task (a)}
+\item[(d)]
+\section*{Task (d)}
 
 \subsection*{Problem Statement}
-% TODO insert problem statement here
+What is the frequency spacing between two neighboring spectral points in the DFT spectrum now, after zero-padding to a length of 128 samples?
 
 \subsection*{Theoretical Background}
-% TODO insert theoretical here
+The frequency resolution of the Discrete Fourier Transform (DFT) is determined by the sampling frequency \( f_s \) and the number of points \( N \) in the DFT. The frequency resolution \( \Delta f \) is given by:
+
+\[ \Delta f = \frac{f_s}{N} \]
+
+Zero-padding a signal to increase its length \( N \) affects the frequency resolution of the DFT. With an increased length, the frequency resolution improves, meaning the spacing between neighboring spectral points becomes finer.
 
 \subsection*{Mathematical Derivation}
-% TODO insert mathematical derivation here
+Given:
+\begin{itemize}
+    \item The sampling time \( T_s = 1 \, \text{ms} \)
+    \item The new number of points \( N = 128 \)
+\end{itemize}
 
-\subsection*{Python Implementation and Plot}
-% TODO insert plot description here
-The plot Figure~\ref{fig:ex1_a_plot} below illustrates these this
+First, calculate the sampling frequency \( f_s \):
 
-% TODO insert plot here
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_a_plot}
-    \caption{Exercise 1 Task (a)}
-    \label{fig:ex1_a_plot}
-\end{figure}
+\[ f_s = \frac{1}{T_s} = \frac{1}{1 \times 10^{-3} \, \text{s}} = 1000 \, \text{Hz} \]
+
+Next, calculate the new frequency resolution \( \Delta f \):
+
+\[ \Delta f = \frac{f_s}{N} = \frac{1000 \, \text{Hz}}{128} \approx 7.8125 \, \text{Hz} \]
+
+Thus, the frequency spacing between two neighboring spectral points in the DFT spectrum after zero-padding to a length of 128 samples is approximately \( 7.8125 \, \text{Hz} \).
 
 \subsection*{Conclusion}
+The frequency resolution of the 128-point DFT/FFT calculated from the zero-padded discrete-time signal \( x[n] \) is approximately \( 7.8125 \, \text{Hz} \). This means that each spectral point in the DFT spectrum is now spaced by \( 7.8125 \, \text{Hz} \), providing a finer frequency resolution compared to the original 100-point DFT.

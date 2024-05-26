@@ -1,25 +1,54 @@
-\item[(a)]
-\section*{Task (a)}
+\item[(d)]
+\section*{Task (d)}
 
 \subsection*{Problem Statement}
-% TODO insert problem statement here
+Experiment with \( w1 \) and \( w2 \) (i.e., adjust their values) and find a setting where the DFT/FFT yields the exact result. Explain why the DFT/FFT result is exact with the selected settings.
 
-\subsection*{Theoretical Background}
-% TODO insert theoretical here
+\subsection*{Python Script}
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
 
-\subsection*{Mathematical Derivation}
-% TODO insert mathematical derivation here
+# Parameters
+N = 128
+n = np.arange(N)
 
-\subsection*{Python Implementation and Plot}
-% TODO insert plot description here
-The plot Figure~\ref{fig:ex1_a_plot} below illustrates these this
+# Experiment with w1 and w2
+w1 = 2 * np.pi * 0.125  # Corresponds to 1/8 of the sampling frequency
+w2 = 2 * np.pi * 0.25   # Corresponds to 1/4 of the sampling frequency
 
-% TODO insert plot here
+# Generate the signal
+x = np.cos(w1 * n) + np.cos(w2 * n)
+
+# Compute the FFT
+X = np.fft.fft(x)
+
+# Compute the magnitude of the spectrum
+magnitude_spectrum = np.abs(X)
+
+# Generate frequency axis
+frequencies = np.fft.fftfreq(N, d=1.0)
+
+# Plot the magnitude spectrum
+plt.figure(figsize=(10, 6))
+plt.stem(frequencies, magnitude_spectrum, 'b', markerfmt=" ", basefmt="-b")
+plt.title('Magnitude Spectrum of x with Exact DFT Frequencies')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Magnitude')
+plt.grid(True)
+
+# Save the plot for LaTeX inclusion
+plt.savefig('fig/ex5_d_magnitude_spectrum_exact.png')
+plt.show()
+\end{verbatim}
+
+\subsection*{Magnitude Spectrum with Exact DFT Frequencies}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{fig/ex1_a_plot}
-    \caption{Exercise 1 Task (a)}
-    \label{fig:ex1_a_plot}
+    \includegraphics[width=0.8\textwidth]{fig/ex5_d_magnitude_spectrum_exact.png}
+    \caption{Magnitude Spectrum of the Signal with Exact DFT Frequencies}
+    \label{fig:ex5_d_magnitude_spectrum_exact}
 \end{figure}
 
-\subsection*{Conclusion}
+\subsection*{Explanation}
+By choosing \( w1 = 2 \pi \cdot 0.125 \) and \( w2 = 2 \pi \cdot 0.25 \), we align the signal frequencies with the DFT bin frequencies. This alignment ensures that each cosine component fits perfectly within the signal window, resulting in no spectral leakage and sharp peaks in the magnitude spectrum at the exact frequencies. The DFT/FFT yields exact results because the chosen frequencies are integer multiples of the fundamental frequency, allowing the DFT to capture the signal components without any distortion.
