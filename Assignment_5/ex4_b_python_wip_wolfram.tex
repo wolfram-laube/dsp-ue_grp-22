@@ -1,0 +1,46 @@
+\item[(b)]
+\section{Ideal Impulse Response}
+
+\subsection*{Problem Statement}
+What is the ideal impulse response \( h_{\text{ideal}}[n] \) for the ideal frequency response
+\[ H_{\text{ideal}}(\Omega)=
+\begin{cases}
+1 & \text{for } 0 \leq |\Omega| \leq \Omega_0 \\
+0 & \text{for } \Omega_0 \leq |\Omega| \leq \pi
+\end{cases}
+\]
+with \( \Omega_0 = \frac{\Omega_{\text{pass}} + \Omega_{\text{stop}}}{2} \)?
+
+\subsection*{Theoretical Background}
+The ideal lowpass filter has a rectangular frequency response, which is equal to 1 in the passband and 0 in the stopband. The impulse response of an ideal lowpass filter can be derived by taking the inverse Fourier transform of the ideal frequency response.
+
+\subsection*{Mathematical Derivation}
+Given the ideal frequency response:
+\[ H_{\text{ideal}}(\Omega)=
+\begin{cases}
+1 & \text{for } 0 \leq |\Omega| \leq \Omega_0 \\
+0 & \text{for } \Omega_0 \leq |\Omega| \leq \pi
+\end{cases}
+\]
+
+The cutoff frequency \( \Omega_0 \) is the average of the passband and stopband edge frequencies:
+\[ \Omega_0 = \frac{\Omega_{\text{pass}} + \Omega_{\text{stop}}}{2} \]
+
+From Task (a):
+\[ \Omega_{\text{pass}} = 0.34\pi \]
+\[ \Omega_{\text{stop}} = 0.4\pi \]
+\[ \Omega_0 = \frac{0.34\pi + 0.4\pi}{2} = 0.37\pi \]
+
+The ideal impulse response \( h_{\text{ideal}}[n] \) is the inverse Fourier transform of \( H_{\text{ideal}}(\Omega) \):
+\[ h_{\text{ideal}}[n] = \frac{1}{2\pi} \int_{-\Omega_0}^{\Omega_0} e^{j\Omega n} d\Omega \]
+
+Evaluating the integral, we get:
+\[ h_{\text{ideal}}[n] = \frac{\Omega_0}{\pi} \text{sinc}\left(\frac{\Omega_0 n}{\pi}\right) \]
+
+Substituting \( \Omega_0 = 0.37\pi \):
+\[ h_{\text{ideal}}[n] = 0.37 \text{sinc}(0.37 n) \]
+
+\subsection*{Conclusion}
+The ideal impulse response of the lowpass filter is:
+\[ h_{\text{ideal}}[n] = 0.37 \text{sinc}(0.37 n) \]
+This impulse response characterizes the ideal lowpass filter with the specified frequency response.

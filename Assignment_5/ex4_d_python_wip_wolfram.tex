@@ -1,0 +1,26 @@
+\item[(d)]
+\section{Effect of Decreasing Filter Order}
+
+\subsection*{Problem Statement}
+How can the decrease to the specified filter order \( N \) be interpreted, and which effect on the frequency response of the realizable filter does that have?
+
+\subsection*{Theoretical Background}
+The order \( N \) of an FIR filter determines the length of the impulse response. A higher order \( N \) means a longer impulse response, which typically allows for a sharper transition between the passband and stopband in the frequency response. Conversely, decreasing the filter order \( N \) results in a shorter impulse response, leading to a less sharp transition and potentially more ripple in the passband and/or stopband.
+
+\subsection*{Mathematical Derivation}
+
+\subsubsection*{Interpretation of Decrease in Filter Order}
+\begin{itemize}
+    \item A decrease in the filter order \( N \) means fewer coefficients in the FIR filter.
+    \item This reduction can simplify the filter design and implementation but may degrade the filter's performance.
+\end{itemize}
+
+\subsubsection*{Effect on Frequency Response}
+\begin{itemize}
+    \item \textbf{Transition Band}: A lower filter order results in a wider transition band between the passband and stopband.
+    \item \textbf{Ripple}: There is typically more ripple in both the passband and stopband as the filter order decreases.
+    \item \textbf{Attenuation}: The stopband attenuation may not meet the specified requirements if the filter order is too low.
+\end{itemize}
+
+\subsection*{Conclusion}
+Decreasing the filter order \( N \) simplifies the filter design and implementation but can negatively impact the frequency response. The transition band becomes wider, and there may be increased ripple in the passband and stopband, along with reduced stopband attenuation.

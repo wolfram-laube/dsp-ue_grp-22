@@ -1,0 +1,29 @@
+\item[(f)]
+\section{Derive the Difference Equation}
+
+\subsection*{Problem Statement}
+Given the poles and zeros, derive the difference equation from the transfer function \( H(z) \).
+
+\subsection*{Theoretical Background}
+The transfer function \( H(z) \) relates the input and output of a system in the z-domain. By expressing \( H(z) \) in terms of its polynomial coefficients, we can convert it back to the time-domain difference equation.
+
+\subsection*{Mathematical Derivation}
+The transfer function derived previously is:
+\[ H(z) = \frac{z^2}{z^2 + \frac{1}{15} z - \frac{2}{5}} \]
+
+We can express this as:
+\[ H(z) = \frac{Y(z)}{X(z)} = \frac{z^2}{z^2 + \frac{1}{15} z - \frac{2}{5}} \]
+
+This gives:
+\[ Y(z) \left( z^2 + \frac{1}{15} z - \frac{2}{5} \right) = z^2 X(z) \]
+
+In the time domain, this corresponds to the difference equation:
+\[ y[n] + \frac{1}{15} y[n-1] - \frac{2}{5} y[n-2] = x[n] \]
+
+Rearranging terms to isolate \( y[n] \):
+\[ y[n] = x[n] - \frac{1}{15} y[n-1] + \frac{2}{5} y[n-2] \]
+
+\subsection*{Conclusion}
+The derived difference equation from the transfer function \( H(z) \) is:
+\[ y[n] = x[n] - \frac{1}{15} y[n-1] + \frac{2}{5} y[n-2] \]
+This confirms the given difference equation.

@@ -1,0 +1,60 @@
+\item[(a)]
+\section{Normalized Radian Frequencies and Tolerances}
+
+\subsection*{Problem Statement}
+Specify the normalized radian frequencies for the passband \( \Omega_{\text{pass}} \) and the stopband \( \Omega_{\text{stop}} \), the passband tolerance \( \delta_{1} \), and the stopband tolerance \( \delta_{2} \).
+
+Given:
+\begin{itemize}
+    \item Passband cutoff frequency: \( f_{\text{pass}} = 3.4 \text{kHz} \)
+    \item Stopband cutoff frequency: \( f_{\text{stop}} = 4 \text{kHz} \)
+    \item Allowed ripple in the passband: \( \pm 5\% \)
+    \item Minimum stopband attenuation: \( 45 \text{dB} \)
+    \item Sampling frequency: \( f_s = 20 \text{kHz} \)
+\end{itemize}
+
+\subsection*{Theoretical Background}
+Normalized radian frequencies are calculated using the formula:
+\[ \Omega = \frac{2\pi f}{f_s} \]
+where \( f \) is the frequency in Hz and \( f_s \) is the sampling frequency in Hz.
+
+Passband tolerance \( \delta_1 \) is the maximum allowed deviation from the desired gain (1) in the passband, given as a percentage.
+
+Stopband tolerance \( \delta_2 \) is derived from the minimum stopband attenuation, given in decibels (dB). It is calculated using the formula:
+\[ \delta_2 = 10^{-\frac{A}{20}} \]
+where \( A \) is the attenuation in dB.
+
+\subsection*{Mathematical Derivation}
+
+\subsubsection*{Normalized Radian Frequencies}
+\begin{itemize}
+    \item Passband cutoff frequency:
+    \[
+    \Omega_{\text{pass}} = \frac{2\pi \times 3400}{20000} = 0.34\pi
+    \]
+    \item Stopband cutoff frequency:
+    \[
+    \Omega_{\text{stop}} = \frac{2\pi \times 4000}{20000} = 0.4\pi
+    \]
+\end{itemize}
+
+\subsubsection*{Passband Tolerance \( \delta_1 \)}
+Given \( \pm 5\% \) ripple in the passband, the tolerance is:
+\[
+\delta_1 = 0.05
+\]
+
+\subsubsection*{Stopband Tolerance \( \delta_2 \)}
+Given a minimum stopband attenuation of \( 45 \text{dB} \):
+\[
+\delta_2 = 10^{-\frac{45}{20}} = 10^{-2.25} \approx 0.00562
+\]
+
+\subsection*{Conclusion}
+The normalized radian frequencies and tolerances for the lowpass filter are:
+\begin{itemize}
+    \item Passband cutoff frequency \( \Omega_{\text{pass}} = 0.34\pi \)
+    \item Stopband cutoff frequency \( \Omega_{\text{stop}} = 0.4\pi \)
+    \item Passband tolerance \( \delta_1 = 0.05 \)
+    \item Stopband tolerance \( \delta_2 = 0.00562 \)
+\end{itemize}
