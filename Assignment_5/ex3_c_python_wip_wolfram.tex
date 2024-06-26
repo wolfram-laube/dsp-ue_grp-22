@@ -1,0 +1,39 @@
+\item[(c)]
+\section{Transfer Function with Polynomials of \(z^{-i}\) and \(z^{+i}\)}
+
+\subsection*{Problem Statement}
+State the transfer function, first with polynomials of \(z^{-i}\), \(i = 0, 1, 2, 3, \ldots\), and afterwards with polynomials of \(z^{+i}\).
+
+\subsection*{Theoretical Background}
+The transfer function \(H(z)\) relates the input \(X(z)\) and output \(Y(z)\) in the z-domain. It can be expressed using polynomials of \(z^{-1}\) (commonly used in digital filter design) and also in terms of \(z\).
+
+\subsection*{Mathematical Derivation}
+Given the zeros and poles, we can construct the transfer function.
+
+\subsubsection*{Polynomials of \(z^{-i}\)}
+The transfer function \( H(z) \) in terms of \( z^{-1} \):
+\[ H(z) = \frac{(z + 1)(z - j)(z + j)}{z(z - (0.75 + j0.25))(z - (0.75 - j0.25))} \]
+
+Simplifying the numerator and the denominator:
+\[ (z + 1)(z - j)(z + j) = (z + 1)(z^2 + 1) = z^3 + z^2 + z + 1 \]
+
+The denominator:
+\[ z(z - (0.75 + j0.25))(z - (0.75 - j0.25)) = z \left(z^2 - (0.75 + j0.25 + 0.75 - j0.25)z + (0.75^2 - j^2(0.25^2))\right) \]
+\[ = z(z^2 - 1.5z + 0.625) = z^3 - 1.5z^2 + 0.625z \]
+
+So, the transfer function is:
+\[ H(z) = \frac{z^3 + z^2 + z + 1}{z^3 - 1.5z^2 + 0.625z} \]
+
+Expressing in terms of \( z^{-1} \):
+\[ H(z) = \frac{1 + z^{-1} + z^{-2} + z^{-3}}{1 - 1.5z^{-1} + 0.625z^{-2}} \]
+
+\subsubsection*{Polynomials of \(z^{+i}\)}
+The transfer function \( H(z) \) in terms of \( z \):
+\[ H(z) = \frac{z^3 + z^2 + z + 1}{z^3 - 1.5z^2 + 0.625z} \]
+
+\subsection*{Conclusion}
+The transfer function expressed with polynomials of \( z^{-i} \) is:
+\[ H(z) = \frac{1 + z^{-1} + z^{-2} + z^{-3}}{1 - 1.5z^{-1} + 0.625z^{-2}} \]
+
+The transfer function expressed with polynomials of \( z^{+i} \) is:
+\[ H(z) = \frac{z^3 + z^2 + z + 1}{z^3 - 1.5z^2 + 0.625z} \]

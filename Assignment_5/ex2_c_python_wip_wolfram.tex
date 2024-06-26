@@ -1,0 +1,28 @@
+\item[(c)]
+\section{Transfer Function}
+
+\subsection*{Problem Statement}
+Compute the transfer function \( H(z) = \frac{Y(z)}{X(z)} \).
+
+\subsection*{Theoretical Background}
+The transfer function \( H(z) \) of a system characterizes its input-output relationship in the z-domain. It is obtained by taking the z-transform of the difference equation and solving for \( H(z) = \frac{Y(z)}{X(z)} \).
+
+\subsection*{Mathematical Derivation}
+Given the difference equation:
+\[ y[n] = x[n] - \frac{1}{15} y[n-1] + \frac{2}{5} y[n-2] \]
+
+Taking the z-transform of both sides:
+\[ Y(z) = X(z) - \frac{1}{15} Y(z) z^{-1} + \frac{2}{5} Y(z) z^{-2} \]
+
+Rearranging to solve for \( \frac{Y(z)}{X(z)} \):
+\[ Y(z) + \frac{1}{15} Y(z) z^{-1} - \frac{2}{5} Y(z) z^{-2} = X(z) \]
+\[ Y(z) \left( 1 + \frac{1}{15} z^{-1} - \frac{2}{5} z^{-2} \right) = X(z) \]
+\[ H(z) = \frac{Y(z)}{X(z)} = \frac{1}{1 + \frac{1}{15} z^{-1} - \frac{2}{5} z^{-2}} \]
+
+Multiplying the numerator and denominator by \( z^2 \) to get a standard form:
+\[ H(z) = \frac{z^2}{z^2 + \frac{1}{15} z - \frac{2}{5}} \]
+
+\subsection*{Conclusion}
+The transfer function \( H(z) \) of the system is:
+\[ H(z) = \frac{z^2}{z^2 + \frac{1}{15} z - \frac{2}{5}} \]
+This transfer function characterizes the input-output relationship of the given difference equation in the z-domain.

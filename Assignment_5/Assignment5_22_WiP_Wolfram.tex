@@ -1,0 +1,260 @@
+\documentclass[12pt,a4paper,austrian]{article}
+\usepackage{graphicx}
+\usepackage[austrian, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % fuer Mengen \N, Q, C, R
+\usepackage{minted} % fuer Code Listings mit Syntax Highlighting
+\graphicspath{{./fig/}}
+
+
+%% Satzspiegel
+\setlength{\hoffset}{-1in} \setlength{\textwidth}{18cm}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\marginparsep}{0.7em}
+\setlength{\marginparwidth}{0.5cm}
+
+\setlength{\voffset}{-1.9in}
+\setlength{\headheight}{12pt}
+\setlength{\topmargin}{2.6cm}
+\addtolength{\topmargin}{-\headheight}
+\setlength{\headsep}{3.5cm}
+\addtolength{\headsep}{-\topmargin}
+\addtolength{\headsep}{-\headheight}
+\setlength{\textheight}{27cm}
+
+%% How should floats be treated?
+\setlength{\floatsep}{12 pt plus 0 pt minus 8 pt}
+\setlength{\textfloatsep}{12 pt plus 0pt minus 8 pt}
+\setlength{\intextsep}{12 pt plus 0pt minus 8 pt}
+
+\tolerance2000
+\emergencystretch20pt
+
+%% Text appearence
+% English text
+\newcommand{\eg}[1]%
+{\selectlanguage{english}\textit{#1}\selectlanguage{austrian}}
+
+\newcommand{\filename}[1]
+{\begin{small}\texttt{#1}\end{small}}
+
+\newcommand\IFT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle*{1.7}}\end{picture}}
+\newcommand\FT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle*{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle{1.7}}\end{picture}}
+
+% A box for multiple choice problems
+\newcommand{\choicebox}{\fbox{\rule{0pt}{0.5ex}\rule{0.5ex}{0pt}}}
+
+\newenvironment{wahrfalsch}%
+{\bigskip\par\noindent\makebox[1cm][c]{richtig}\hspace{3mm}\makebox[1cm][c]{falsch}
+    \begin{list}%
+    {\makebox[1cm][c]{\choicebox}\hspace{3mm}\makebox[1cm][c]{\choicebox}}%
+    {\setlength{\labelwidth}{2.31 cm}\setlength{\labelsep}{3mm}
+    \setlength{\leftmargin}{2.61 cm}\setlength{\listparindent}{0pt}
+    \setlength{\itemindent}{0pt}}%
+    }
+    {\end{list}}
+
+\newcounter{theaufgabe}\setcounter{theaufgabe}{1}
+\newenvironment{aufgabe}[1]%
+{\bigskip\par\noindent\begin{nopagebreak}
+                          \textsf{\textbf{\arabic{theaufgabe}.\thinspace Aufgabe}}\quad
+                          \textsf{\textit{#1}}\\*[1ex]%
+                          \stepcounter{theaufgabe}\hspace{2ex}
+\end{nopagebreak}}
+{\par\pagebreak[2]}
+
+% Innerhalb der Aufgaben erfolgt die weitere Unterteilung mittels einer
+% enumerate Umgebung, die allerdings a), b),... zaehlen soll.
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+% A box to tick for everything which has to done
+\newcommand{\abgabe}{\marginpar{$\Box$}}
+% Margin paragraphs on the left side
+\reversemarginpar
+
+% Language for listings
+%\lstset{language=Vhdl,
+%  basicstyle=\small\tt,
+% keywordstyle=\tt\bf,
+% commentstyle=\sl}
+
+% No indention
+\setlength{\parindent}{0.0cm}
+% Don't number sections
+\setcounter{secnumdepth}{0}
+
+
+%% Beginning of the text
+
+\begin{document}
+    \selectlanguage{austrian}
+    \pagestyle{plain}
+
+
+%===  This is the header section ============================================================
+    \thispagestyle{empty}
+    \noindent
+    \begin{minipage}[b][4cm]{1.0\textwidth}
+        \begin{center}
+            \begin{bf}
+                \begin{large}
+                    Digital Signal Processing SS 2024 -- 5.~Assignment
+                \end{large} \\
+                \vspace{0.3cm}
+                \begin{Large}
+                    z-Transform, Digital Filters
+                \end{Large} \\
+                \vspace{0.3cm}
+            \end{bf}
+            \begin{large}
+                Group 22\\
+                Julian Feichtinger, K12015812\\
+                Wolfram Laube, K08900915\\
+            \end{large}
+        \end{center}
+    \end{minipage}
+
+    \noindent \rule[0.8em]{\textwidth}{0.12mm}\\[-0.5em]
+%=======================================================================================
+
+
+    \begin{aufgabe}{Signal Distortion and Group Delay (20\%)}
+
+        Generate three periods of the signal
+
+        $$
+        x[n]=\sum_{i=1}^{4} \frac{1}{2 i-1} \sin (2 \pi 0.005(2 i-1) n)
+        $$
+
+        and load (MATLAB command load) the provided mat file \texttt{Filter\_coefficients.mat}.
+        This file contains the filter coefficients of an FIR filter (b1 and a1) and the filter coefficients of an IIR filter (b2 and a2).
+        Both filters are designed to fulfil the same design criteria (filter specification).
+        Filter with both the FIR and the IIR filter the signal $x[n]$ and observe the signal distortion.
+        Show and discuss the results in your report.
+
+        \hrule
+        \input{ex1_python_wip_wolfram}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{z-Transform (25\%)}
+
+        Consider the difference equation of a recursive LTI system
+
+        $$
+        y[n]=x[n]-\frac{1}{15} y[n-1]+\frac{2}{5} y[n-2]
+        $$
+
+        \begin{enumerate}
+            \item[(a)] Sketch the block diagram of the LTI system corresponding to the given difference equation.
+            \item[(b)] Determine the filter type (FIR or IIR) and explain your choice in the report.
+            \item[(c)] Compute the transfer function $H(z)=\frac{Y(z)}{X(z)}$.
+            \item[(d)] Calculate the poles and zeros of $H(z)$ and include a sketch of the pole-zero map in your report.
+            Also include the region of convergence (ROC) in the pole-zero map.
+            \item[(e)] Is the system stable?
+            Explain your answer.
+        \end{enumerate}
+
+        \hrule
+
+        \begin{enumerate}
+            \input{ex2_a_python_wip_wolfram}
+            \input{ex2_b_python_wip_wolfram}
+            \input{ex2_c_python_wip_wolfram}
+            \input{ex2_d_python_wip_wolfram}
+            \input{ex2_e_python_wip_wolfram}
+            \input{ex2_f_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Recursive Filter (25\%)}
+
+        Let the poles and zeros of a recursive filter be given:
+        \begin{enumerate}
+            \item[-] Zeros: $N_{1}=-1, N_{2}=j, N_{3}=-j$
+            \item[-] Poles: $P_{1}=0, P_{2}=0.75+j 0.25, P_{3}=0.75-j 0.25$
+        \end{enumerate}
+
+        \begin{enumerate}
+            \item[(a)] Does this filter have real coefficients? Justify your answer.
+            \item[(b)] Draw a sketch of the pole-zero map.
+            \item[(c)] State the transfer function, first with polynomials of $z^{-i}, i=0,1,2,3, \ldots$, and afterwards with polynomials of $z^{+i}$.
+            \item[(d)] Draw the block diagram of a direct-form-l implementation of the filter and specify the coefficient values in the block diagram.
+            \item[(e)] Plot the magnitude and phase response of the filter in MATLAB.
+            \item[(f)] Plot the impulse response of the filter for $0 \leq n \leq 50$ in MATLAB.
+        \end{enumerate}
+
+        \hrule
+
+        \begin{enumerate}
+            \input{ex3_a_python_wip_wolfram}
+            \input{ex3_b_python_wip_wolfram}
+            \input{ex3_c_python_wip_wolfram}
+            \input{ex3_d_python_wip_wolfram}
+            \input{ex3_e_python_wip_wolfram}
+            \input{ex3_f_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Lowpass Filter Design (30\%)}
+        An analogue signal is sampled with a sampling frequency $f_{\mathrm{s}}=20 \mathrm{kHz}$ and filtered subsequently. The digital lowpass filter should exhibit the following specification:
+
+        \begin{enumerate}
+            \item[-] Passband cutoff frequency: $f_{\text {pass }}=3.4 \mathrm{kHz}$
+            \item[-] Stopband cutoff frequency: $f_{\text {stop }}=4 \mathrm{kHz}$
+            \item[-] Allowed ripple in the passband: $\pm 5 \%$
+            \item[-] Minimum stopband attenuation: $45 \mathrm{~dB}$
+        \end{enumerate}
+
+        \begin{enumerate}
+            \item[(a)]  Specify the normalized radian frequencies for the passband $\Omega_{\text {pass }}$
+            and the stopband $\Omega_{\text {stop }}$, the passband tolerance $\delta_{1}$ and the stopband tolerance $\delta_{2}$.
+            Hint: Be sure to use the decadic logarithm $\log 10$ ( ) for conversion to decibels.
+            \item[(b)]  What is the ideal impulse response $h_{\text {ideal }}[n]$ for the ideal frequency response
+            $$
+            H_{\text {ideal }}(\Omega)= \begin{cases}
+                                            1 & \text { for } 0 \leq|\Omega| \leq \Omega_{0} \\ 0 & \text { for } \Omega_{0} \leq|\Omega| \leq \pi
+            \end{cases}
+            $$
+            with $\Omega_{0}=\frac{\Omega_{\text {pass }}+\Omega_{\text {stop }}}{2}$ ?
+            \item[(c)]  Which two measures are necessary to deduce a realizable FIR system of order $N$ from the ideal impulse response $h_{\text {ideal }}[n]$ ?
+            \item[(d)]  How can the decrease to the specified filter order $N$ be interpreted, and which effect on the frequency response of the realizable filter does that have?
+            \item[(e)]  Design an FIR filter of order $N=20$ with a rectangular window with a corner radian frequency $\Omega_{0}$.
+            Plot its frequency response and the tolerance scheme in one plot.
+            To this end, complete the provided file \texttt{dsp\_5\_4.m}.
+            \item[(f)]  Is the tolerance scheme being violated?
+            Can the tolerance scheme be fulfilled by increasing the filter order to $N=90$?
+            \item[(g)]  Now, use a hamming window instead of the rectangular window (for $N=90$) and assess the result.
+            \item[(h)]  Use the MATLAB filterDesigner to design an elliptic IIR filter fulfilling the above described requirements.
+            What is the order of this filter? What is the disadvantage of this filter?
+        \end{enumerate}
+
+        \hrule
+
+        \begin{enumerate}
+            \input{ex4_a_python_wip_wolfram}
+            \input{ex4_b_python_wip_wolfram}
+            \input{ex4_c_python_wip_wolfram}
+            \input{ex4_d_python_wip_wolfram}
+            \input{ex4_e_python_wip_wolfram}
+            \input{ex4_f_python_wip_wolfram}
+            \input{ex4_g_python_wip_wolfram}
+            \input{ex4_h_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+\end{document}

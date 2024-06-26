@@ -1,0 +1,24 @@
+\item[(b)]
+\section{Filter Type Determination}
+
+\subsection*{Problem Statement}
+Determine the filter type (FIR or IIR) and explain your choice.
+
+\subsection*{Theoretical Background}
+A filter can be classified as either FIR (Finite Impulse Response) or IIR (Infinite Impulse Response) based on the structure of its difference equation. An FIR filter depends only on the current and past input values, whereas an IIR filter depends on both current and past input and output values.
+
+\subsection*{Mathematical Derivation}
+The given difference equation is:
+\[ y[n] = x[n] - \frac{1}{15} y[n-1] + \frac{2}{5} y[n-2] \]
+
+We need to analyze the terms involved in this equation:
+\begin{itemize}
+    \item The term \( x[n] \) represents the current input.
+    \item The term \( -\frac{1}{15} y[n-1] \) represents the previous output scaled by a factor of \(-\frac{1}{15}\).
+    \item The term \( \frac{2}{5} y[n-2] \) represents the output from two steps before, scaled by a factor of \(\frac{2}{5}\).
+\end{itemize}
+
+Since the difference equation includes terms that depend on past output values (\( y[n-1] \) and \( y[n-2] \)), it indicates that the filter has feedback and thus it is an IIR filter.
+
+\subsection*{Conclusion}
+The given filter is an IIR (Infinite Impulse Response) filter. This conclusion is based on the presence of terms that involve past output values (\( y[n-1] \) and \( y[n-2] \)), which are indicative of feedback in the filter structure.

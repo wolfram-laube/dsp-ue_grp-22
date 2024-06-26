@@ -1,0 +1,39 @@
+\item[(e)]
+\section*{Task (e)}
+
+\subsection*{Problem Statement}
+How can the changed distance between two neighboring spectral points be interpreted?
+
+\subsection*{Theoretical Background}
+The frequency resolution of the Discrete Fourier Transform (DFT) is determined by the number of points \( N \) and the sampling frequency \( f_s \). The frequency resolution \( \Delta f \) is given by:
+
+\[ \Delta f = \frac{f_s}{N} \]
+
+Increasing the number of points \( N \) through zero-padding reduces the frequency spacing \( \Delta f \), providing a finer frequency resolution.
+
+\subsection*{Mathematical Derivation}
+Given:
+\begin{itemize}
+    \item The original number of points \( N = 100 \) with a frequency resolution of \( 10 \, \text{Hz} \)
+    \item The zero-padded number of points \( N = 128 \) with a frequency resolution of \( 7.8125 \, \text{Hz} \)
+\end{itemize}
+
+The change in frequency resolution can be interpreted as follows:
+
+\subsection*{Interpretation}
+\begin{enumerate}
+    \item **Improved Frequency Resolution:**
+    The finer frequency resolution (\( 7.8125 \, \text{Hz} \) compared to \( 10 \, \text{Hz} \)) means that the DFT can now distinguish between frequencies that are closer together. This allows for a more detailed analysis of the signal's frequency components.
+
+    \item **Better Spectral Detail:**
+    With a finer frequency resolution, the DFT provides more spectral points within the same frequency range. This results in a more detailed and smoother representation of the signal's frequency spectrum.
+
+    \item **Interpolation of Spectral Points:**
+    Zero-padding effectively interpolates the existing spectral points, providing a clearer view of the underlying spectral shape. This is particularly useful for identifying narrowband components and subtle frequency variations.
+
+    \item **Limitations:**
+    It is important to note that zero-padding does not add new information to the signal. The actual frequency content of the signal remains unchanged. The improved resolution is a result of interpolating the DFT output, not capturing additional frequency components.
+\end{enumerate}
+
+\subsection*{Conclusion}
+The changed distance between two neighboring spectral points, resulting from zero-padding, can be interpreted as an improved frequency resolution. This provides a more detailed and accurate representation of the signal's frequency spectrum, allowing for better analysis and interpretation of the signal's frequency components. However, it is crucial to understand that zero-padding does not introduce new information but enhances the clarity of the existing spectral information.

@@ -1,0 +1,29 @@
+\item[(c)]
+\section*{Task (c)}
+
+\subsection*{Problem Statement}
+Compare and interpret the results from (a) and (b).
+
+\subsection*{Comparison and Interpretation}
+
+\subsubsection*{Comparison of Results}
+
+\begin{itemize}
+    \item \textbf{Result from Task (a)}: The magnitude spectrum of the signal \( x \) with a rectangular window.
+    \item \textbf{Result from Task (b)}: The magnitude spectrum of the signal \( y \) with a Hamming window applied.
+\end{itemize}
+
+\subsubsection*{Interpretation}
+
+\textbf{Rectangular Window (Task (a))}:
+\begin{itemize}
+    \item The rectangular window is essentially the default window applied due to the finite length of the signal \( x \).
+    \item The magnitude spectrum shows clear peaks at the frequencies of the two cosine components. However, the rectangular window causes significant spectral leakage, where energy from the main frequencies spreads into neighboring frequencies. This results in wider and less distinct peaks, making it harder to precisely identify the exact frequencies of the components.
+\end{itemize}
+
+\textbf{Hamming Window (Task (b))}:
+\begin{itemize}
+    \item The Hamming window is designed to reduce spectral leakage by tapering the ends of the signal to zero. This reduces the discontinuities at the boundaries of the windowed signal.
+    \item The magnitude spectrum with the Hamming window applied shows much sharper and more distinct peaks at the frequencies of the two cosine components. The reduction in spectral leakage results in narrower peaks, making it easier to identify the exact frequencies of the components.
+    \item Although the peaks are sharper, the overall amplitude of the peaks may be slightly reduced compared to the rectangular window. This is a trade-off for achieving better frequency resolution and reducing spectral leakage.
+\end{itemize}

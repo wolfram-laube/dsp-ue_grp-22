@@ -1,0 +1,38 @@
+\item[(a)]
+\section*{Task (a)}
+
+\subsection*{Problem Statement}
+100 values of an analog signal \( x(t) \) were measured with a sampling time of \( 1 \, \text{ms} \), leading to the discrete-time signal \( x[n] \). This time-domain signal \( x[n] \) is transformed to the frequency domain using the DFT/FFT, i.e., a 100-point DFT/FFT is calculated.
+
+(a) What is the frequency spacing between two neighboring spectral points in the DFT spectrum, i.e., what is the frequency resolution?
+
+\subsection*{Theoretical Background}
+The Discrete Fourier Transform (DFT) converts a discrete-time signal \( x[n] \) into its frequency-domain representation. The DFT of a signal is given by:
+
+\[ X[k] = \sum_{n=0}^{N-1} x[n] e^{-j \frac{2 \pi}{N} kn} \]
+
+where \( X[k] \) represents the frequency component at the \( k \)-th index and \( N \) is the number of points in the DFT.
+
+The frequency resolution of the DFT is determined by the sampling frequency \( f_s \) and the number of points \( N \) in the DFT. The frequency resolution \( \Delta f \) is given by:
+
+\[ \Delta f = \frac{f_s}{N} \]
+
+\subsection*{Mathematical Derivation}
+Given:
+\begin{itemize}
+    \item The sampling time \( T_s = 1 \, \text{ms} \)
+    \item The number of points \( N = 100 \)
+\end{itemize}
+
+First, calculate the sampling frequency \( f_s \):
+
+\[ f_s = \frac{1}{T_s} = \frac{1}{1 \times 10^{-3} \, \text{s}} = 1000 \, \text{Hz} \]
+
+Next, calculate the frequency resolution \( \Delta f \):
+
+\[ \Delta f = \frac{f_s}{N} = \frac{1000 \, \text{Hz}}{100} = 10 \, \text{Hz} \]
+
+Thus, the frequency spacing between two neighboring spectral points in the DFT spectrum is \( 10 \, \text{Hz} \).
+
+\subsection*{Conclusion}
+The frequency resolution of the 100-point DFT/FFT calculated from the discrete-time signal \( x[n] \) with a sampling time of \( 1 \, \text{ms} \) is \( 10 \, \text{Hz} \). This means that each spectral point in the DFT spectrum is spaced by \( 10 \, \text{Hz} \).

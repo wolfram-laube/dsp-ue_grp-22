@@ -1,0 +1,58 @@
+\item[(b)]
+\section*{Task (b)}
+
+\subsection*{Problem Statement}
+Generate a Hamming window of length \( N \) using the MATLAB command `hamming`. Multiply the Hamming window with the signal \( x \) to obtain the signal \( y \). Compute the spectrum of \( y \) and display its magnitude like in (a).
+
+\subsection*{Python Script}
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+N = 128
+n = np.arange(N)
+w1 = 2 * np.pi * 0.1
+w2 = 2 * np.pi * 0.15
+
+# Generate the signal
+x = np.cos(w1 * n) + np.cos(w2 * n)
+
+# Generate the Hamming window
+hamming_window = np.hamming(N)
+
+# Multiply the Hamming window with the signal x to obtain y
+y = x * hamming_window
+
+# Compute the FFT of y
+Y = np.fft.fft(y)
+
+# Compute the magnitude of the spectrum
+magnitude_spectrum_y = np.abs(Y)
+
+# Generate frequency axis
+frequencies = np.fft.fftfreq(N, d=1.0)
+
+# Plot the magnitude spectrum of y
+plt.figure(figsize=(10, 6))
+plt.stem(frequencies, magnitude_spectrum_y, 'b', markerfmt=" ", basefmt="-b")
+plt.title('Magnitude Spectrum of y (Hamming Window Applied)')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Magnitude')
+plt.grid(True)
+plt.show()
+
+# Save the plot for LaTeX inclusion
+plt.savefig('fig/ex5_b_magnitude_spectrum_hamming.png')
+\end{verbatim}
+
+\subsection*{Magnitude Spectrum of the Signal with Hamming Window}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig/ex5_b_magnitude_spectrum_hamming.png}
+    \caption{Magnitude Spectrum of the Signal with Hamming Window Applied}
+    \label{fig:ex5_b_magnitude_spectrum_hamming}
+\end{figure}
+
+\subsection*{Analysis}
+The magnitude spectrum plot shows the discrete frequencies present in the signal after applying the Hamming window. The Hamming window reduces spectral leakage, resulting in a clearer representation of the frequency components compared to the rectangular window.

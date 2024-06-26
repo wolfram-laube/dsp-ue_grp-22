@@ -1,0 +1,38 @@
+\item[(c)]
+\section*{Task (c)}
+
+\subsection*{Problem Statement}
+We now append zeros to the discrete-time signal \( x[n] \) to obtain a signal that has a length of 128 samples.
+
+(c) Why do we append exactly so many zeros, so that a total signal of length \( 128 = 2^7 \) results?
+
+\subsection*{Theoretical Background}
+Zero-padding is the practice of appending zeros to a discrete-time signal to increase its length to a desired number of samples. This is commonly done for several reasons when performing the Discrete Fourier Transform (DFT) or Fast Fourier Transform (FFT):
+
+\begin{enumerate}
+    \item **FFT Efficiency:**
+    The FFT algorithm is most efficient when the length of the input signal is a power of two. This is because the FFT is based on the Cooley-Tukey algorithm, which recursively divides the DFT into smaller DFTs. When the length is a power of two, the division is straightforward, and the computational complexity is minimized.
+
+    \item **Improved Frequency Resolution:**
+    Zero-padding increases the length of the signal, which increases the number of points in the frequency domain. This results in a finer frequency resolution, providing more detailed information about the signal's spectral components. However, it is important to note that zero-padding does not add new information to the signal; it only interpolates between existing spectral points.
+
+    \item **Spectral Leakage Reduction:**
+    Zero-padding can help in reducing spectral leakage by making the signal appear more periodic. When the signal length is a power of two, the FFT assumes the signal to be periodic, which helps in reducing discontinuities at the boundaries.
+\end{enumerate}
+
+\subsection*{Mathematical Derivation}
+Given:
+\begin{itemize}
+    \item The original number of samples \( N = 100 \)
+    \item The desired number of samples \( M = 128 \), which is a power of two
+\end{itemize}
+
+To zero-pad the signal from \( N = 100 \) to \( M = 128 \), we append \( M - N = 128 - 100 = 28 \) zeros to the original signal.
+
+\subsection*{Conclusion}
+Appending zeros to obtain a signal length that is a power of two, specifically \( 128 = 2^7 \), is beneficial for several reasons:
+\begin{itemize}
+    \item It allows the use of the FFT algorithm, which is most efficient when the signal length is a power of two.
+    \item It improves the frequency resolution of the DFT/FFT, providing more detailed spectral information.
+    \item It helps reduce spectral leakage by making the signal appear more periodic.
+\end{itemize}

@@ -1,0 +1,26 @@
+\item[(e)]
+\section{System Stability}
+
+\subsection*{Problem Statement}
+Is the system stable? Explain your answer.
+
+\subsection*{Theoretical Background}
+A discrete-time system is stable if its poles lie inside the unit circle in the z-plane. This means that for a system described by its transfer function \( H(z) \), the system is stable if all the poles of \( H(z) \) satisfy \( |z| < 1 \).
+
+\subsection*{Mathematical Derivation}
+From Task (d), we have the poles of the transfer function \( H(z) \):
+\[ z = \frac{3}{5}, \quad z = -\frac{2}{3} \]
+
+To determine the stability of the system, we need to check if the magnitudes of these poles are less than 1.
+
+\begin{itemize}
+    \item For \( z = \frac{3}{5} \):
+    \[ \left| \frac{3}{5} \right| = 0.6 < 1 \]
+    \item For \( z = -\frac{2}{3} \):
+    \[ \left| -\frac{2}{3} \right| = 0.67 < 1 \]
+\end{itemize}
+
+Since both poles have magnitudes less than 1, they lie inside the unit circle.
+
+\subsection*{Conclusion}
+The system is stable because all the poles of the transfer function \( H(z) \) lie inside the unit circle in the z-plane.

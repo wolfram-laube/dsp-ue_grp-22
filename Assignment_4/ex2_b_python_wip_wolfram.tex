@@ -1,0 +1,58 @@
+\item[(b)]
+\section*{Task (b)}
+
+\subsection*{Problem Statement}
+What is the "period" of the DFT spectrum in terms of samples, in terms of frequency, and in terms of normalized angular frequency?
+
+\subsection*{Theoretical Background}
+The Discrete Fourier Transform (DFT) of a signal is periodic. This periodicity arises from the fact that the DFT assumes the input signal is one period of an infinitely periodic sequence. As a result, the frequency spectrum repeats itself.
+
+1. **Period in Terms of Samples:**
+   The DFT of a signal with \( N \) points is periodic with a period of \( N \) samples.
+
+2. **Period in Terms of Frequency:**
+   The frequency axis for the DFT is given by:
+   \[
+   f_k = \frac{k f_s}{N} \quad \text{for} \quad k = 0, 1, \ldots, N-1
+   \]
+   The period in terms of frequency is \( f_s \), the sampling frequency.
+
+3. **Period in Terms of Normalized Angular Frequency:**
+   The normalized angular frequency \( \omega \) is defined as:
+   \[
+   \omega = \frac{2\pi k}{N} \quad \text{for} \quad k = 0, 1, \ldots, N-1
+   \]
+   The period in terms of normalized angular frequency is \( 2\pi \).
+
+\subsection*{Mathematical Derivation}
+Given:
+\begin{itemize}
+    \item The number of points \( N = 100 \)
+    \item The sampling frequency \( f_s = 1000 \, \text{Hz} \)
+\end{itemize}
+
+1. **Period in Terms of Samples:**
+   The period of the DFT spectrum in terms of samples is \( N \):
+   \[
+   N = 100 \, \text{samples}
+   \]
+
+2. **Period in Terms of Frequency:**
+   The period of the DFT spectrum in terms of frequency is \( f_s \):
+   \[
+   f_s = 1000 \, \text{Hz}
+   \]
+
+3. **Period in Terms of Normalized Angular Frequency:**
+   The period of the DFT spectrum in terms of normalized angular frequency is \( 2\pi \):
+   \[
+   2\pi \, \text{radians}
+   \]
+
+\subsection*{Conclusion}
+The period of the DFT spectrum is:
+\begin{itemize}
+    \item 100 samples in terms of the number of samples.
+    \item 1000 Hz in terms of frequency.
+    \item \( 2\pi \) radians in terms of normalized angular frequency.
+\end{itemize}

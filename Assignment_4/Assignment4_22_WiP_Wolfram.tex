@@ -1,0 +1,339 @@
+\documentclass[12pt,a4paper,austrian]{article}
+\usepackage{graphicx}
+\usepackage[austrian, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % fuer Mengen \N, Q, C, R
+\usepackage{minted} % fuer Code Listings mit Syntax Highlighting
+\graphicspath{{./fig/}}
+
+
+%% Satzspiegel
+\setlength{\hoffset}{-1in} \setlength{\textwidth}{18cm}
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{1.5cm}
+\setlength{\marginparsep}{0.7em}
+\setlength{\marginparwidth}{0.5cm}
+
+\setlength{\voffset}{-1.9in}
+\setlength{\headheight}{12pt}
+\setlength{\topmargin}{2.6cm}
+\addtolength{\topmargin}{-\headheight}
+\setlength{\headsep}{3.5cm}
+\addtolength{\headsep}{-\topmargin}
+\addtolength{\headsep}{-\headheight}
+\setlength{\textheight}{27cm}
+
+%% How should floats be treated?
+\setlength{\floatsep}{12 pt plus 0 pt minus 8 pt}
+\setlength{\textfloatsep}{12 pt plus 0pt minus 8 pt}
+\setlength{\intextsep}{12 pt plus 0pt minus 8 pt}
+
+\tolerance2000
+\emergencystretch20pt
+
+%% Text appearence
+% English text
+\newcommand{\eg}[1]%
+{\selectlanguage{english}\textit{#1}\selectlanguage{austrian}}
+
+\newcommand{\filename}[1]
+{\begin{small}\texttt{#1}\end{small}}
+
+\newcommand\IFT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle*{1.7}}\end{picture}}
+\newcommand\FT{\unitlength1mm\begin{picture}(10,2) \put (1,1)
+{\circle*{1.7}} \put(2,1){\line(1,0){5}} \put(8,1)
+{\circle{1.7}}\end{picture}}
+
+% A box for multiple choice problems
+\newcommand{\choicebox}{\fbox{\rule{0pt}{0.5ex}\rule{0.5ex}{0pt}}}
+
+\newenvironment{wahrfalsch}%
+{\bigskip\par\noindent\makebox[1cm][c]{richtig}\hspace{3mm}\makebox[1cm][c]{falsch}
+    \begin{list}%
+    {\makebox[1cm][c]{\choicebox}\hspace{3mm}\makebox[1cm][c]{\choicebox}}%
+    {\setlength{\labelwidth}{2.31 cm}\setlength{\labelsep}{3mm}
+    \setlength{\leftmargin}{2.61 cm}\setlength{\listparindent}{0pt}
+    \setlength{\itemindent}{0pt}}%
+    }
+    {\end{list}}
+
+\newcounter{theaufgabe}\setcounter{theaufgabe}{1}
+\newenvironment{aufgabe}[1]%
+{\bigskip\par\noindent\begin{nopagebreak}
+                          \textsf{\textbf{\arabic{theaufgabe}.\thinspace Aufgabe}}\quad
+                          \textsf{\textit{#1}}\\*[1ex]%
+                          \stepcounter{theaufgabe}\hspace{2ex}
+\end{nopagebreak}}
+{\par\pagebreak[2]}
+
+% Innerhalb der Aufgaben erfolgt die weitere Unterteilung mittels einer
+% enumerate Umgebung, die allerdings a), b),... zaehlen soll.
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+% A box to tick for everything which has to done
+\newcommand{\abgabe}{\marginpar{$\Box$}}
+% Margin paragraphs on the left side
+\reversemarginpar
+
+% Language for listings
+%\lstset{language=Vhdl,
+%  basicstyle=\small\tt,
+% keywordstyle=\tt\bf,
+% commentstyle=\sl}
+
+% No indention
+\setlength{\parindent}{0.0cm}
+% Don't number sections
+\setcounter{secnumdepth}{0}
+
+
+%% Beginning of the text
+
+\begin{document}
+    \selectlanguage{austrian}
+    \pagestyle{plain}
+
+
+%===  This is the header section ============================================================
+    \thispagestyle{empty}
+    \noindent
+    \begin{minipage}[b][4cm]{1.0\textwidth}
+        \begin{center}
+            \begin{bf}
+                \begin{large}
+                    Digital Signal Processing SS 2024 -- 4.~Assignment
+                \end{large} \\
+                \vspace{0.3cm}
+                \begin{Large}
+                    Reconstruction, DFT, FFT, STFT
+                \end{Large} \\
+                \vspace{0.3cm}
+            \end{bf}
+            \begin{large}
+                Group 22\\
+                Julian Feichtinger, K12015812\\
+                Wolfram Laube, K08900915\\
+            \end{large}
+        \end{center}
+    \end{minipage}
+
+    \noindent \rule[0.8em]{\textwidth}{0.12mm}\\[-0.5em]
+%=======================================================================================
+
+
+    \begin{aufgabe}{Reconstruction (15\%)}
+
+        Consider the analog signal
+
+        $$
+        x(t)=1+0.5 \cos \left(2 \pi f_{1} t\right)+2 \sin \left(2 \pi f_{2} t\right)+\sin \left(2 \pi f_{3} t\right)
+        $$
+
+        with $f_{1}=2 k \mathrm{kz}, f_{2}=4 \mathrm{kHz}$ and $f_{3}=6 \mathrm{kHz}$.
+
+        \begin{enumerate}
+            \item[a)] Sketch the Fourier transform of $x(t)$ and plot the analog signal $x(t)$ in Matlab using a timevector $t=0: 1 e-6: 1 e-3$.
+
+            \item[b)]  Sample the analog signal $x(t)$ with sampling frequencies $f_{s 1}=9 \mathrm{kHz}$ and $f_{s 2}=14 \mathrm{kHz}$, which yield $x_{1}[n]$ and $x_{2}[n]$, respectively.
+            Sketch the corresponding DTFT spectra.
+
+            \item[c)]  After ideal reconstruction you end up with the analog signals $x_{1}(t)$ and $x_{2}(t)$.
+            Sketch the reconstructed analog spectra.
+            Plot the reconstructed time-domain signal.
+            Compare your results with point a).
+        \end{enumerate}
+
+        \hrule
+        \begin{enumerate}
+            \input{ex1_a_python_wip_wolfram}
+            \input{ex1_b_python_wip_wolfram}
+            \input{ex1_c_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{DFT Theory (20\%)}
+
+        100 values of an analog signal $x(t)$ were measured with a sampling time of $1 \mathrm{~ms}$, leading to the discrete-time signal $x[n]$.
+        This time domain signal $x[n]$ is transformed to frequency domain using the DFT/FFT, i.e., a 100-point DFT/FFT is calculated.
+
+        \begin{enumerate}
+            \item[(a)] What is the frequency spacing between two neighboring spectral points in the DFT spectrum, i.e., what is the frequency resolution?
+
+            \item[(b)] What is the "period" of the DFT spectrum in terms of samples, in terms of frequency, and in terms of normalized angular frequency?
+
+            We now append zeros to the discrete-time signal $x[n]$ to obtain a signal that has a length of 128 samples.
+
+            \item[(c)] Why do we append exactly so many zeros, so that a total signal of length $128=2^{7}$ results?
+
+            \item[(d)] What is the frequency spacing between two neighboring spectral points in the DFT spectrum now?
+
+            \item[(e)] How can the changed distance between two neighboring spectral points be interpreted?
+        \end{enumerate}
+
+        \hrule
+
+        \begin{enumerate}
+            \input{ex2_a_python_wip_wolfram}
+            \input{ex2_b_python_wip_wolfram}
+            \input{ex2_c_python_wip_wolfram}
+            \input{ex2_d_python_wip_wolfram}
+            \input{ex2_e_python_wip_wolfram}
+        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{FFT in Image Processing (15\%)}
+
+        In image processing, besides other methods, also the FFT can be utilized to conduct edge detection.
+        To this end, a two-dimensional FFT (MATLAB command: $fft2$ ) is calculated from an image to transform it from spatial domain to frequency domain. Here, edges in an image produce high frequencies in the corresponding spectrum.
+
+        In this exercise, you should make the edges of an image visible.
+        Start by making yourself familiar with the MatLAB script fft\_edge\_detection.
+        Now filter the image in frequency domain, such that the edges become visible after a transformation back to spatial domain.
+        Describe your approach and justify why it works.
+        A solution could look like the one depicted in Fig. \ref{fig:ex2_fft}.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.90\textwidth]{fig/ex2_fft}
+            \caption{Example for edge detection with the FFT}
+            \label{fig:ex2_fft}
+        \end{figure}
+
+        \hrule
+
+%        \begin{enumerate}
+            \input{ex3_python_wip_wolfram}
+%        \end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{FFT in Audio Signal Processing - Short Time Fourier Transform (30\%)}
+        In the Dual Tone Multiple Frequency (DTMF) method, each of the 16 possible information symbols $q \in\{0,1,2,3,4,5,6,7,8,9, A, B, C, D, *, \#\}$ is represented by a superposition of two sinusoidal audio signals with different frequencies.
+        The assignment of every symbols to the two frequencies contained in the corresponding audio signal is given in Tab. \ref{tab:ex4_frequencies}.
+        The duration of a single symbol is $70 \mathrm{~ms}$, and the audio signals of two symbols are separated by a pause of $30 \mathrm{~ms}$.
+        The file $\mathrm{dtmf.wav}$ contains a signal consisting of a sequence DTMF signals corresponding to a sequence of randomly chosen symbols, where the signal has been generated with a sampling frequency of $f_{s}=8 \mathrm{kHz}$.
+
+        \begin{table}
+            \caption{DTMF frequencies}
+            \label{tab:ex4_frequencies}
+            \centering
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                & $1209 \mathrm{~Hz}$ & $1336 \mathrm{~Hz}$ & $1477 \mathrm{~Hz}$ & $1633 \mathrm{~Hz}$ \\
+                \hline
+                $697 \mathrm{~Hz}$ & 1                   & 2                   & 3                   & $A$                 \\
+                \hline
+                $770 \mathrm{~Hz}$ & 4                   & 5                   & 6                   & $B$                 \\
+                \hline
+                $852 \mathrm{~Hz}$ & 7                   & 8                   & 9                   & $C$                 \\
+                \hline
+                $941 \mathrm{~Hz}$ & $*$                 & 0                   & $\#$                & $D$                 \\
+                \hline
+            \end{tabular}
+        \end{table}
+
+
+        \begin{enumerate}
+            \item[(a)] Write a MatLAB script, where you read in the signal and the sampling frequency from the file dtmf.wav. Hint: the MatLaB function audioread might be useful. Plot a $300 \mathrm{~ms}$ long segment of the signal and put the resulting plot into your protocol (including a correct labeling of the axes, etc.). Given this signal segment in time domain, can you make any statement which symbols are contained in this segment?
+            \item[(b)] Compute the spectrum for the whole signal length using the MATLAB command fft.
+            Plot the magnitude of the spectrum.
+            Label the axes correctly, with the frequency axis scale in $\mathrm{Hz}$ (Hint: the frequency values given in Tab. 1 should be visible at the correct position on the frequency axis).
+
+            \item[(c)] Now the so-called short-time Fourier Transform (STFT) should be implemented.
+            To this end, the total signal is grouped into overlapping blocks of a specified length, and each block is transformed individually into frequency domain.
+            Additionally, the individual blocks should be filtered using a Hamming window (MATLAB command hamming) for improving the spectral illustration.
+            \begin{enumerate}
+                \item[-] Implement the generation of the signal blocks given the total signal.
+                Every block should have a length of 256 samples.
+                Use an overlapping factor of 2, i.e., every block is overlapping with its preceding block by half the signal length.
+                The last block should also have a length of 256 , i.e., if not enough samples from the total signal are left to obtain a block of length 256 , append the appropriate number of zeros.
+                \item[-] Every block should be multiplied with a Hamming window.
+                The window can be generated with the MATLAB command hamming.
+                \item[-] Transform the windowed blocks to frequency domain using the FFT to obtain the Fourier transformed blocks (FTBs).
+                \item[-] Plot a 2d diagram showing the FTBs. For this purpose, consider which frequency values have to be displayed on the frequency axis, and which time values have to be plotted on the time axis, i.e., which frequency range has been regarded with the FFTs and at which points in time have the FFTs of the individual blocks been computed?
+                Generate two MATLAB vectors $f_{stft}$ and $t_{stft}$ , which contain the appropriate frequency and time values, respectively.
+                Then, plot the diagram containing the magnitude of the STFT result using the MATLAB command surface ( $t_{stft}$, $f_{stft}$, $abs(stft\_mtx)$), where $stft\_mtx$ is the matrix containing the individual FTBs. Display the amplitude information with the command \texttt{colorbar}.
+                The STFT magnitude diagram in your protocol should look similar as in Fig \ref{fig:ex4_c_stft_magnitude} (the symbol sequence might not be the same), where in Fig \ref{fig:ex4_c_stft_magnitude} only the frequency range $0 - 2000 \mathrm{~Hz}$ is shown.
+
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=0.49\textwidth]{fig/ex4_c_stft_magnitude}
+                    \caption{STFT magnitude of a DTMF sequence}
+                    \label{fig:ex4_c_stft_magnitude}
+                \end{figure}
+            \end{enumerate}
+            \item[(d)] Perform the same steps as in (c), but without multiplying the signal blocks by a Hamming window.
+            How does the resulting magnitude diagram of the STFT differ to the one computed in (c)?
+            How is the effect called that causes this difference?
+
+            \item[(e)] On basis of the plotted diagram in (c), determine the symbol sequence that has been used for generating the total signal.
+
+            \item[(f)] Answer the following questions:
+            \begin{enumerate}
+                \item[-] What is the essential difference between the diagrams plotted in (b) and (c), and what becomes apparent in the diagram in (c) that cannot be observed from the diagram in (b)?
+                \item[-] Give an example for an application of the STFT and describe it briefly.
+            \end{enumerate}
+        \end{enumerate}
+
+        \hrule
+
+\begin{enumerate}
+        \input{ex4_a_python_wip_wolfram}
+        \input{ex4_b_python_wip_wolfram}
+        \input{ex4_c_python_wip_wolfram}
+        \input{ex4_d_python_wip_wolfram}
+        \input{ex4_e_python_wip_wolfram}
+        \input{ex4_f_python_wip_wolfram}
+\end{enumerate}
+
+    \end{aufgabe}
+
+    \begin{aufgabe}{Window effects of the DFT (20\%)}
+
+        Let us consider a signal consisting of two cosine oscillations with close frequencies.
+        The actually infinite signal is time limited by windowing it once with a rectangular window and once with a Hamming window of length N.
+        Generate the signal in MATLAB as follows:
+
+        \begin{lstlisting}[label={lst:ex5_lstlisting}]
+N = 128;
+n = 0:N-1;
+w1 = 2*pi*0.1;
+w2 = 2*pi*0.15;@
+x = cos(w1*n) + cos(w2*n);
+        \end{lstlisting}
+
+        Since $x$ has only finite length, it implicitly has already been windowed with a rectangular window.
+        \begin{enumerate}
+            \item[(a)] Compute the (discrete) spectrum of $x$ and plot a line plot of its magnitude (MATLAB commands $f f t$, abs, stem). Do not forget to label the axes!
+
+            \item[(b)] Generate a Hamming window of length $N$ using the MatLAB command hamming.
+            Multiply the Hamming window with the signal $\mathrm{x}$ to obtain the signal $\mathrm{y}$.
+            Compute the spectrum of $\mathrm{y}$ and display its magnitude like in (a).
+
+            \item[(c)] Compare and interpret the results from (a) and (b).
+
+            \item[(d)] Experiment with w1 and w2 (i.e., adjust their values) and find a setting, where the DFT/FFT yields the exact result.
+            Explain why the DFT/FFT result is exact with the selected settings.
+        \end{enumerate}
+        \hrule
+
+\begin{enumerate}
+        \input{ex5_a_python_wip_wolfram}
+        \input{ex5_b_python_wip_wolfram}
+        \input{ex5_c_python_wip_wolfram}
+        \input{ex5_d_python_wip_wolfram}
+\end{enumerate}
+
+    \end{aufgabe}
+
+\end{document}

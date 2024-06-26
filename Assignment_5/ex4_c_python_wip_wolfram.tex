@@ -1,0 +1,41 @@
+\item[(c)]
+\section{Measures for Realizable FIR System}
+
+\subsection*{Problem Statement}
+Which two measures are necessary to deduce a realizable FIR system of order \( N \) from the ideal impulse response \( h_{\text{ideal}}[n] \)?
+
+\subsection*{Theoretical Background}
+The ideal impulse response \( h_{\text{ideal}}[n] \) is non-causal and infinite in length, which makes it non-realizable. To create a realizable FIR filter, two common measures are taken:
+\begin{itemize}
+    \item \textbf{Windowing}: Applying a window function to truncate the ideal impulse response to a finite length.
+    \item \textbf{Shifting}: Shifting the truncated impulse response to make it causal.
+\end{itemize}
+
+\subsection*{Mathematical Derivation}
+
+\subsubsection*{Windowing}
+The ideal impulse response is infinite. To make it finite, we multiply it by a window function \( w[n] \) that is nonzero only for \( 0 \leq n \leq N-1 \). A common choice is the rectangular window:
+\[
+w[n] =
+\begin{cases}
+1 & \text{for } 0 \leq n \leq N-1 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+The windowed impulse response \( h_w[n] \) is given by:
+\[
+h_w[n] = h_{\text{ideal}}[n] \cdot w[n]
+\]
+
+\subsubsection*{Shifting}
+To make the filter causal, we shift the windowed impulse response by \( \frac{N-1}{2} \) samples to the right:
+\[
+h_{\text{causal}}[n] = h_w[n - \frac{N-1}{2}]
+\]
+
+\subsection*{Conclusion}
+The two measures necessary to deduce a realizable FIR system of order \( N \) from the ideal impulse response \( h_{\text{ideal}}[n] \) are:
+\begin{itemize}
+    \item \textbf{Windowing}: Truncating the ideal impulse response using a window function.
+    \item \textbf{Shifting}: Shifting the truncated impulse response to make it causal.
+\end{itemize}

@@ -8,7 +8,7 @@ Bernhard Plaimer, Matthias Wagner
 
 Assignment 4
 
-Reconstruction, DFT, FFT, STFT
+c
 
 Information about assignments and in particular on Moodle submission modalities can be found in DSP-Tutorial_2024S_Courselnfo.pdf. Submission deadline is Tue, June 11, 2024, 08:00.
 
